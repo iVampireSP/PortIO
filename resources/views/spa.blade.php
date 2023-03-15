@@ -17,6 +17,7 @@
     <script>
         window.Base = {
             SiteName: '{{ config('app.display_name') }}',
+            User: @json(auth()->user()),
         }
     </script>
 
