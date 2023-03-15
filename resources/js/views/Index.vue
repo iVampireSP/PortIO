@@ -18,11 +18,16 @@ const time = ref(new Date().toLocaleTimeString());
 
 const user = ref({
     name: 'loading...'
-    
+
 })
 
 http.get('user').then((res) => {
     user.value = res.data
+})
+
+
+http.get('tunnels').then((res) => {
+    console.log(res.data)
 })
 
 
