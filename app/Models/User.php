@@ -40,5 +40,16 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'is_admin' => 'boolean',
     ];
+
+    public function isAdmin() {
+        return $this->is_admin;
+    }
+
+    // tunnels
+    public function tunnels()
+    {
+        return $this->hasMany(Tunnel::class);
+    }
 }
