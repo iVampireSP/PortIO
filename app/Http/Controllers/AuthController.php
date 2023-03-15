@@ -4,16 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use GuzzleHttp\Client;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
+use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
-    public function redirect(Request $request)
+    public function redirect(Request $request): RedirectResponse
     {
         $request->session()->put('state', $state = Str::random(40));
 
@@ -28,9 +29,9 @@ class AuthController extends Controller
         return redirect()->to(config('oauth.oauth_auth_url') . '?' . $query);
     }
 
-    public function callback(Request $request)
+    public function callback(Request $request): RedirectResponse
     {
-        $state = $request->session()->pull('state');
+        // $state = $request->session()->pull('state');
 
         // if (strlen($state) > 0 && $state === $request->state) {
         //     abort(403, 'Invalid state');
@@ -38,42 +39,48 @@ class AuthController extends Controller
 
         $http = new Client;
 
-        $authorize = $http->post(config('oauth.oauth_token_url'), [
-            'form_params' => [
-                'grant_type' => 'authorization_code',
-                'client_id' => config('oauth.client_id'),
-                'client_secret' => config('oauth.client_secret'),
-                'redirect_uri' => config('oauth.callback_uri'),
-                'code' => $request->code,
-            ],
-        ])->getBody();
+        try {
+            $authorize = $http->post(config('oauth.oauth_token_url'), [
+                'form_params' => [
+                    'grant_type' => 'authorization_code',
+                    'client_id' => config('oauth.client_id'),
+                    'client_secret' => config('oauth.client_secret'),
+                    'redirect_uri' => config('oauth.callback_uri'),
+                    'code' => $request->input('code'),
+                ],
+            ])->getBody();
+        } catch (GuzzleException $e) {
+        }
         $authorize = json_decode($authorize);
 
-        $oauth_user = $http->get(config('oauth.oauth_user_url'), [
-            'headers' => [
-                'Accept' => 'application/json',
-                'Authorization' => 'Bearer ' . $authorize->access_token,
-            ],
-        ])->getBody();
+        try {
+            $oauth_user = $http->get(config('oauth.oauth_user_url'), [
+                'headers' => [
+                    'Accept' => 'application/json',
+                    'Authorization' => 'Bearer ' . $authorize->access_token,
+                ],
+            ])->getBody();
+        } catch (GuzzleException $e) {
+        }
         $oauth_user = json_decode($oauth_user);
 
-        $user_sql = User::where('email', $oauth_user->email);
+        $user_sql = (new User)->where('email', $oauth_user->email);
         $user = $user_sql->first();
 
-        $api_token = null;
+        // $api_token = null;
         if (is_null($user)) {
             $name = $oauth_user->name;
             $email = $oauth_user->email;
             $password = Hash::make(Str::random(40));
-            $user = User::create(compact('name', 'email', 'password'));
+            $user = (new User)->create(compact('name', 'email', 'password'));
             $request->session()->put('auth.password_confirmed_at', time());
         } else {
             if ($user->name != $oauth_user->name) {
-                User::where('email', $oauth_user->email)->update([
+                (new User)->where('email', $oauth_user->email)->update([
                     'name' => $oauth_user->name
                 ]);
             }
-            $api_token = $user->api_token;
+            // $api_token = $user->api_token;
         }
 
         Auth::loginUsingId($user->id, true);
@@ -81,17 +88,8 @@ class AuthController extends Controller
         return redirect()->route('index');
     }
 
-    public function reset()
-    {
-        return view('password.reset');
-    }
 
-    public function confirm()
-    {
-        return view('password.confirm');
-    }
-
-    public function confirm_password(Request $request)
+    public function confirm_password(Request $request): JsonResponse|RedirectResponse
     {
         $request->validate($this->password_rules());
 
@@ -102,14 +100,14 @@ class AuthController extends Controller
             : redirect()->intended();
     }
 
-    protected function password_rules()
+    protected function password_rules(): array
     {
         return [
             'password' => 'required|password',
         ];
     }
 
-    public function logout()
+    public function logout(): RedirectResponse
     {
         Auth::logout();
         return redirect()->route('index');
