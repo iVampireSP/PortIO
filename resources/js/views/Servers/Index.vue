@@ -13,7 +13,9 @@
             }" class="list-group-item list-group-item-action" aria-current="true">
                    <div class="d-flex w-100 justify-content-between">
                        <h5 class="mb-1">{{ server.name }}</h5>
-                       <small>{{ server.status }}</small>
+                       <small>
+                            <server-status :status="server.status"></server-status>
+                       </small>
                    </div>
                    <p class="mb-1">
                        <span class="badge bg-primary" v-show="server.allow_http">HTTP</span>
@@ -36,6 +38,7 @@
 <script setup>
 import {ref} from 'vue'
 import http from '../../plugins/http'
+import ServerStatus from "../../components/ServerStatus.vue";
 
 
 const servers = ref([{
