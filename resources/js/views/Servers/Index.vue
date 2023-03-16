@@ -14,7 +14,7 @@
                    <div class="d-flex w-100 justify-content-between">
                        <h5 class="mb-1">{{ server.name }}</h5>
                        <small>
-                            <server-status :status="server.status"></server-status>
+                            <server-status :status="server.status" />
                        </small>
                    </div>
                    <p class="mb-1">
