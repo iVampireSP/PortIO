@@ -24,8 +24,6 @@ return new class extends Migration
 
             $table->unsignedSmallInteger('remote_port')->index()->nullable();
 
-            $table->string('client_token')->index()->unique();
-
             $table->string('sk')->index()->nullable();
 
             $table->unsignedBigInteger('user_id')->index();
