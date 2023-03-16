@@ -1,37 +1,38 @@
 <template>
-   <div>
-       <h3>服务器列表</h3>
+    <div>
+        <h3>服务器列表</h3>
 
-       <div class="list-group">
+        <div class="list-group">
 
-           <template v-for="server in servers">
-               <router-link :to="{
+            <template v-for="server in servers">
+                <router-link :to="{
                     name: 'servers.edit',
                     params: {
                     id: server.id
                 }
             }" class="list-group-item list-group-item-action" aria-current="true">
-                   <div class="d-flex w-100 justify-content-between">
-                       <h5 class="mb-1">{{ server.name }}</h5>
-                       <small>
-                            <server-status :status="server.status" />
-                       </small>
-                   </div>
-                   <p class="mb-1">
-                       <span class="badge bg-primary" v-show="server.allow_http">HTTP</span>
-                       <span class="badge bg-primary" v-show="server.allow_https">HTTPS</span>
-                       <span class="badge bg-primary" v-show="server.allow_tcp">TCP</span>
-                       <span class="badge bg-primary" v-show="server.allow_udp">UDP</span>
-                       <span class="badge bg-primary" v-show="server.allow_stcp">STCP</span>
-                       <span class="badge bg-primary" v-show="server.allow_sudp">SUDP</span>
-                       <span class="badge bg-primary" v-show="server.allow_xtcp">XTCP</span>
-                   </p>
-                   <small>{{ server.server_address }}:{{ server.server_port }}</small>
-               </router-link>
-           </template>
-       </div>
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">{{ server.name }}</h5>
+                        <small>
+                            <server-status :status="server.status"/>
+                        </small>
+                    </div>
+                    <p class="mb-1">
+                        支持的协议:
+                        <span v-show="server.allow_http">HTTP &nbsp;</span>
+                        <span v-show="server.allow_tcp">TCP &nbsp;</span>
+                        <span v-show="server.allow_https">HTTPS &nbsp;</span>
+                        <span v-show="server.allow_udp">UDP &nbsp;</span>
+                        <span v-show="server.allow_stcp">STCP &nbsp;</span>
+                        <span v-show="server.allow_sudp">SUDP &nbsp;</span>
+                        <span v-show="server.allow_xtcp">XTCP</span>
+                    </p>
+                    <small>{{ server.server_address }}:{{ server.server_port }}</small>
+                </router-link>
+            </template>
+        </div>
 
-   </div>
+    </div>
 
 </template>
 
