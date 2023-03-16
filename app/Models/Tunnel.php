@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Tunnel extends Model
 {
@@ -19,7 +20,11 @@ class Tunnel extends Model
         'user_id',
     ];
 
-    public function server()
+    protected $with = [
+        'server',
+    ];
+
+    public function server(): BelongsTo
     {
         return $this->belongsTo(Server::class);
 

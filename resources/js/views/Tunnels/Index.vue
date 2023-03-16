@@ -25,17 +25,22 @@
                 </router-link>
 
             </td>
-            <td>STCP</td>
-            <td>127.0.0.1:80</td>
+            <td>
+                {{ tunnel.protocol.toString().toUpperCase() }}
+            </td>
+            <td>
+                {{ tunnel.local_address }}
+            </td>
 
-            <td>127.0.01:</td>
+            <td>
+                {{ tunnel.server.server_address }}{{ tunnel.remote_port }}
+            </td>
 
             <td>0</td>
             <td>0.000 Bytes</td>
             <td>0.000 Bytes</td>
 
-            <td><a href=" http:
-                //portio.test/servers/1">Test</a></td>
+            <td>Test</td>
 
             <td>
                 <span class="text-danger">离线</span>
