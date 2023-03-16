@@ -27,6 +27,14 @@ const routes = [
         },
     },
     {
+        path: "/tunnels/:id",
+        name: "tunnels.show",
+        component: () => import("../views/Tunnels/Show.vue"),
+        meta: {
+            title: "隧道",
+        },
+    },
+    {
         path: "/servers",
         name: "servers",
         component: () => import("../views/Servers/Index.vue"),
@@ -52,6 +60,8 @@ const routes = [
             title: "创建服务器",
         },
     },
+
+
 ];
 
 

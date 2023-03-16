@@ -6,9 +6,12 @@
 
             <template v-for="server in servers">
                 <router-link :to="{
-                    name: 'servers.edit',
+                    name: isAdmin() ? 'servers.edit' : 'tunnels.create',
                     params: {
                     id: server.id
+                },
+                query: {
+                    server_id: server.id
                 }
             }" class="list-group-item list-group-item-action" aria-current="true">
                     <div class="d-flex w-100 justify-content-between">
@@ -69,5 +72,11 @@ const servers = ref([{
 http.get('servers').then((res) => {
     servers.value = res.data
 })
+
+
+
+const isAdmin = () => {
+    return window['Base']['User']['is_admin']
+}
 
 </script>
