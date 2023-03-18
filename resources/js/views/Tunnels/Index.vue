@@ -40,7 +40,7 @@
             <td>0.000 Bytes</td>
             <td>0.000 Bytes</td>
 
-            <td>Test</td>
+            <td>{{ tunnel.server.name }}</td>
 
             <td>
                 <span class="text-danger">离线</span>
@@ -55,7 +55,17 @@ import {ref} from "vue";
 import http from "../../plugins/http";
 
 
-const tunnels = ref([])
+const tunnels = ref([
+    {
+        id: '0',
+        protocol: '',
+        server: {
+            server_address: '',
+            server_port: '',
+            name: '',
+        }
+    }
+])
 
 http.get('tunnels').then((res) => {
     tunnels.value = res.data
