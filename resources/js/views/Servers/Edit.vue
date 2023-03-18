@@ -298,12 +298,14 @@ const destroy = () => {
 
     http.delete('servers/' + route.currentRoute.value.params.id).then(res => {
         if (res.status === 200 || res.status === 204) {
-            alert("删除成功。")
-
             route.push({
                 name: 'servers'
             })
+        } else {
+            alert('删除服务器失败')
         }
+    }).catch(() => {
+        alert('删除服务器时发生了错误。')
     })
 }
 
