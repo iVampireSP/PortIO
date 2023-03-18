@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\TunnelRequest;
 use App\Models\Server;
 use App\Models\Tunnel;
 use Illuminate\Http\Request;
@@ -146,24 +147,37 @@ class TunnelController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(TunnelRequest $request, Tunnel $tunnel)
     {
-        //
+        unset($request);
+        return $this->success($tunnel);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Tunnel $tunnel)
     {
-        //
+        $request->validate([
+            'name' => 'sometimes|required|string|max:20',
+            'local_address' => 'sometimes|required|string|max:255',
+            'custom_domain' => 'sometimes|required|string|max:255',
+        ]);
+
+        $tunnel = $tunnel->update($request->only(['name', 'local_address', 'custom_domain']));
+
+        return $this->updated($tunnel);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(TunnelRequest $request, Tunnel $tunnel)
     {
-        //
+        unset($request);
+
+        $tunnel->delete();
+
+        return $this->deleted();
     }
 }
