@@ -21,6 +21,6 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 Route::prefix('application')->name('application.')->middleware('api_token')->group(function () {
-    Route::post('users/{user}/traffic', [ApplicationUserController::class, 'addTraffic']);
+    Route::post('users/{user:email}/traffic', [ApplicationUserController::class, 'addTraffic']);
 });
 
