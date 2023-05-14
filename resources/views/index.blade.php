@@ -4,17 +4,14 @@
     <title>{{ config('app.display_name') }}</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta chrset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head>
 
 
 <body>
-    Index
+   <span>欢迎使用: {{ config('app.display_name') }}</span>
 
-    @auth
-        <a href="{{ route('logout') }}">Logout</a>
-    @else
-        <a href="{{ route('login') }}">Login</a>
-    @endauth
+   <a href="{{ route('login') }}">登录</a>
 </body>
 </html>
