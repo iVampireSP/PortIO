@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Models\Server;
+use App\Models\Tunnel;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -22,10 +23,13 @@ class Cost implements ShouldQueue
      */
     public function handle()
     {
-        Server::with('tunnels')->where('status', 'up')->chunk(100, function ($servers) {
+        Server::where('status', 'up')->with('tunnels')->chunk(100, function ($servers) {
             foreach ($servers as $server) {
 
-                foreach ($server->tunnels as $host) {
+                $tunnels = $server->toArray()['tunnels'];
+
+                foreach ($tunnels as $host) {
+                    $host = Tunnel::with(['user', 'server'])->find($host['id']);
                     $host->load('user');
 
                     Log::debug('------------');
@@ -36,6 +40,7 @@ class Cost implements ShouldQueue
                     $tunnel_data = Cache::get($cache_key, null);
 
                     if (!is_null($tunnel_data)) {
+                        Log::debug('frpTunnel_data_ 不为空。');
                         $traffic = ($tunnel_data['today_traffic_in'] ?? 0) + ($tunnel_data['today_traffic_out'] ?? 0);
 
                         Log::debug('本次使用的流量: ' . round($traffic / 1024 / 1024 / 1024, 2) ?? 0);
@@ -78,7 +83,16 @@ class Cost implements ShouldQueue
                             Log::debug('此时 traffic: ' . $traffic);
 
                             // lock for update
-                            $host->user->balance -= $traffic * $host->user->cost;
+
+                            Log::debug('此时 user->traffic: ' . $host->user->traffic);
+                            Log::debug('扣除后的流量: ' . $host->user->traffic - $gb);
+
+                            Cache::lock('user_traffic_' . $host->user->id)->get(function () use ($host, $gb) {
+                                $host->user->update([
+                                    'traffic' => $host->user->traffic - $gb
+                                ]);
+                            });
+
                         }
                     }
                 }

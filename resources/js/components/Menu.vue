@@ -25,13 +25,15 @@ const items = ref([
         name: "隧道",
         route: "tunnels",
     },
-    // {
-    //     name: "服务器列表",
-    //     route: "servers",
-    // },
+
     {
         name: "创建隧道",
         route: "tunnels.create",
+    },
+
+    {
+        name: "客户端下载",
+        route: "downloads",
     },
 ]);
 

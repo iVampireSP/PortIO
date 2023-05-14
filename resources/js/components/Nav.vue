@@ -32,8 +32,8 @@
                             <a
                                 class="nav-link text-auto"
                                 target="_blank"
-                                href="https://forum.laecloud.com"
-                                >社区</a
+                                href="https://wiki.laecloud.com/PortIO"
+                                >文档</a
                             >
                         </li>
                     </ul>

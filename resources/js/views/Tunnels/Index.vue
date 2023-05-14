@@ -18,7 +18,7 @@
         </thead>
         <tbody>
             <tr v-for="tunnel in tunnels">
-                <th>1</th>
+                <th>{{ tunnel.id }}</th>
                 <td>
                     <router-link
                         :to="{

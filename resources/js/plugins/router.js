@@ -35,31 +35,14 @@ const routes = [
         },
     },
     {
-        path: "/servers",
-        name: "servers",
-        component: () => import("../views/Servers/Index.vue"),
+        path: "/downloads",
+        name: "downloads",
+        component: () => import("../views/Downloads.vue"),
         meta: {
-            title: "服务器列表",
+            title: "客户端下载",
         },
     },
-    {
-        path: "/servers/create",
-        name: "servers.create",
-        component: () => import("../views/Servers/Create.vue"),
-        meta: {
-            admin: true,
-            title: "创建服务器",
-        },
-    },
-    {
-        path: "/servers/:id/edit",
-        name: "servers.edit",
-        component: () => import("../views/Servers/Edit.vue"),
-        meta: {
-            admin: true,
-            title: "创建服务器",
-        },
-    },
+
 
 
 ];
