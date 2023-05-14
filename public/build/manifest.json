@@ -1,0 +1,88 @@
+{
+  "_http-f15854d8.js": {
+    "file": "assets/http-f15854d8.js",
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff": {
+    "file": "assets/bootstrap-icons-c6569d46.woff",
+    "src": "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff"
+  },
+  "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2": {
+    "file": "assets/bootstrap-icons-966620f9.woff2",
+    "src": "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-24b136a9.css",
+    "isEntry": true,
+    "src": "resources/css/app.css"
+  },
+  "resources/js/app.css": {
+    "file": "assets/app-81a45845.css",
+    "src": "resources/js/app.css"
+  },
+  "resources/js/app.js": {
+    "assets": [
+      "assets/bootstrap-icons-966620f9.woff2",
+      "assets/bootstrap-icons-c6569d46.woff"
+    ],
+    "css": [
+      "assets/app-81a45845.css"
+    ],
+    "dynamicImports": [
+      "resources/js/views/Index.vue",
+      "resources/js/views/Tunnels/Index.vue",
+      "resources/js/views/Tunnels/Create.vue",
+      "resources/js/views/Tunnels/Show.vue",
+      "resources/js/views/Downloads.vue"
+    ],
+    "file": "assets/app-513ef237.js",
+    "isEntry": true,
+    "src": "resources/js/app.js"
+  },
+  "resources/js/views/Downloads.vue": {
+    "file": "assets/Downloads-a9b5d8fc.js",
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/views/Downloads.vue"
+  },
+  "resources/js/views/Index.vue": {
+    "file": "assets/Index-3131eacb.js",
+    "imports": [
+      "_http-f15854d8.js",
+      "resources/js/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/views/Index.vue"
+  },
+  "resources/js/views/Tunnels/Create.vue": {
+    "file": "assets/Create-8686e4c4.js",
+    "imports": [
+      "resources/js/app.js",
+      "_http-f15854d8.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/views/Tunnels/Create.vue"
+  },
+  "resources/js/views/Tunnels/Index.vue": {
+    "file": "assets/Index-1b63ea2a.js",
+    "imports": [
+      "_http-f15854d8.js",
+      "resources/js/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/views/Tunnels/Index.vue"
+  },
+  "resources/js/views/Tunnels/Show.vue": {
+    "file": "assets/Show-6f6afe7f.js",
+    "imports": [
+      "_http-f15854d8.js",
+      "resources/js/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/views/Tunnels/Show.vue"
+  }
+}
