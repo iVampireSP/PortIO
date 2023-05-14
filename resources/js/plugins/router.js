@@ -1,4 +1,4 @@
-import {createRouter, createWebHistory} from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 // import app from "../config/app";
 
 const routes = [
@@ -42,9 +42,14 @@ const routes = [
             title: "客户端下载",
         },
     },
-
-
-
+    {
+        path: "/sign",
+        name: "sign",
+        component: () => import("../views/Sign.vue"),
+        meta: {
+            title: "签到",
+        },
+    },
 ];
 
 
@@ -58,7 +63,7 @@ routes.forEach((route) => {
     route.beforeEnter = (to, from, next) => {
         // 如果是管理员页面，且用户不是管理员，则跳转到首页
         if (route.meta.admin && !isAdmin()) {
-            next({name: "index"});
+            next({ name: "index" });
         } else {
             next();
         }

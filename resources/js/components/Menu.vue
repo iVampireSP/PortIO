@@ -21,16 +21,18 @@ const items = ref([
         name: "首页",
         route: "index",
     },
+      {
+        name: "签到",
+        route: "sign",
+    },
     {
         name: "隧道",
         route: "tunnels",
     },
-
     {
         name: "创建隧道",
         route: "tunnels.create",
     },
-
     {
         name: "客户端下载",
         route: "downloads",
