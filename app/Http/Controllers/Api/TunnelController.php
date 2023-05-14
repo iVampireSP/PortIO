@@ -61,6 +61,12 @@ class TunnelController extends Controller
             return $this->error('找不到服务器。');
         }
 
+        if ($server->is_china_mainland) {
+            if (!auth()->user()->realnamed) {
+                return $this->error('必须要先实名认证才能创建中国大陆的隧道。');
+            }
+        }
+
         if (Tunnel::where('server_id', $server->id)->count() > $server->max_tunnels) {
             return $this->error('服务器无法开设更多隧道了。');
         }

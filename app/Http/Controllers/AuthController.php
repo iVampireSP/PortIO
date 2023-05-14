@@ -22,7 +22,7 @@ class AuthController extends Controller
             'client_id' => config('oauth.client_id'),
             'redirect_uri' => config('oauth.callback_uri'),
             'response_type' => 'code',
-            'scope' => 'user',
+            'scope' => 'user realname',
             'state' => $state,
         ]);
 
@@ -80,10 +80,15 @@ class AuthController extends Controller
                     'name' => $oauth_user->name
                 ]);
             }
-            // $api_token = $user->api_token;
         }
 
-        Auth::loginUsingId($user->id, true);
+        if (!is_null($oauth_user->real_name_verified_at)) {
+            $user_sql->update([
+                'realnamed' => true
+            ]);
+        }
+
+        Auth::guard('web')->loginUsingId($user->id, true);
 
         return redirect()->route('index');
     }
@@ -109,7 +114,7 @@ class AuthController extends Controller
 
     public function logout(): RedirectResponse
     {
-        Auth::logout();
+        Auth::guard('web')->logout();
         return redirect()->route('index');
     }
 }
