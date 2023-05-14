@@ -27,19 +27,14 @@ import { ref } from "vue";
 
 const version = [
     {
-        name: "Windows Frpc amd64",
+        name: "Windows Frpc",
         arch: "amd64",
         url: "https://r2.laecloud.com/MEFrpRelease/MirrorEdgeFrp_0.46.1_beta_windows_amd64.zip",
     },
     {
-        name: "Windows Frpc i386",
+        name: "Windows Frpc",
         arch: "i386",
         url: "https://r2.laecloud.com/MEFrpRelease/MirrorEdgeFrp_0.46.1_beta_windows_386.zip",
-    },
-    {
-        name: "Windows Python 图形化启动器",
-        arch: "amd64",
-        url: "https://r2.laecloud.com/MEFrpRelease/Mirror_Edge_Frp_Python_Win.zip",
     },
     {
         name: "Linux Frpc amd64",
