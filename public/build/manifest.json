@@ -1,6 +1,6 @@
 {
-  "_http-f15854d8.js": {
-    "file": "assets/http-f15854d8.js",
+  "_http-48767dec.js": {
+    "file": "assets/http-48767dec.js",
     "imports": [
       "resources/js/app.js"
     ]
@@ -35,14 +35,15 @@
       "resources/js/views/Tunnels/Index.vue",
       "resources/js/views/Tunnels/Create.vue",
       "resources/js/views/Tunnels/Show.vue",
-      "resources/js/views/Downloads.vue"
+      "resources/js/views/Downloads.vue",
+      "resources/js/views/Sign.vue"
     ],
-    "file": "assets/app-513ef237.js",
+    "file": "assets/app-3665a2ea.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   },
   "resources/js/views/Downloads.vue": {
-    "file": "assets/Downloads-a9b5d8fc.js",
+    "file": "assets/Downloads-8f250339.js",
     "imports": [
       "resources/js/app.js"
     ],
@@ -50,36 +51,45 @@
     "src": "resources/js/views/Downloads.vue"
   },
   "resources/js/views/Index.vue": {
-    "file": "assets/Index-3131eacb.js",
+    "file": "assets/Index-eba5401f.js",
     "imports": [
-      "_http-f15854d8.js",
+      "_http-48767dec.js",
       "resources/js/app.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/views/Index.vue"
   },
+  "resources/js/views/Sign.vue": {
+    "file": "assets/Sign-1157ce49.js",
+    "imports": [
+      "_http-48767dec.js",
+      "resources/js/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/views/Sign.vue"
+  },
   "resources/js/views/Tunnels/Create.vue": {
-    "file": "assets/Create-8686e4c4.js",
+    "file": "assets/Create-65c6bd7e.js",
     "imports": [
       "resources/js/app.js",
-      "_http-f15854d8.js"
+      "_http-48767dec.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/views/Tunnels/Create.vue"
   },
   "resources/js/views/Tunnels/Index.vue": {
-    "file": "assets/Index-1b63ea2a.js",
+    "file": "assets/Index-e6e87aaf.js",
     "imports": [
-      "_http-f15854d8.js",
+      "_http-48767dec.js",
       "resources/js/app.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/views/Tunnels/Index.vue"
   },
   "resources/js/views/Tunnels/Show.vue": {
-    "file": "assets/Show-6f6afe7f.js",
+    "file": "assets/Show-6d066ab0.js",
     "imports": [
-      "_http-f15854d8.js",
+      "_http-48767dec.js",
       "resources/js/app.js"
     ],
     "isDynamicEntry": true,
