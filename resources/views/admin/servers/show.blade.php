@@ -4,7 +4,7 @@
 
     <h3>{{ $server->name }}</h3>
 
-    <a href="{{ route('servers.edit', $server->id) }}">编辑服务器</a>
+    <a href="{{ route('admin.servers.edit', $server->id) }}">编辑服务器</a>
 
     <p>
         服务器地址: {{ $server->server_address }} <br />
@@ -15,6 +15,7 @@
         {{ $server->allow_udp ? 'UDP' : ' ' }}
         {{ $server->allow_stcp ? 'STCP' : ' ' }}
         {{ $server->allow_xtcp ? 'XTCP' : ' ' }}
+        {{ $server->allow_sudp ? 'SUDP' : ' ' }}
     </p>
 
     <p>端口号范围: {{ $server->min_port }} ~ {{ $server->max_port }} </p>
