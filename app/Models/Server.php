@@ -7,13 +7,16 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Server extends Model
 {
-    public $hidden = [
+    protected $hidden = [
         'dashboard_password',
         'dashboard_user',
-        'dashboard_port'
+        'dashboard_port',
+        'key'
     ];
+    
     protected $fillable = [
         'name',
+        'key',
         'server_address',
         'server_port',
         'token',
@@ -31,6 +34,7 @@ class Server extends Model
         'max_port',
         'max_tunnels',
         'is_china_mainland',
+        'status'
     ];
 
     // tunnels

@@ -8,9 +8,6 @@
 
 </template>
 
-<script setup>
-
-</script>
 
 <style scoped>
   .mb-8 {

@@ -40,14 +40,18 @@ class PortManagerController extends Controller
             return $this->failed('找不到隧道。');
         }
 
-        switch ($host->status) {
-            case 'stopped':
-                return $this->failed('隧道已停止。');
-            case 'error':
-                return $this->failed('隧道出错。');
-            case 'suspended':
-                return $this->failed('隧道已暂停。');
+        if ($host->locked_reason) {
+            return $this->failed('隧道被锁定，原因是' . $host->locked_reason . '。');
         }
+
+        // switch ($host->status) {
+        //     case 'stopped':
+        //         return $this->failed('隧道已停止。');
+        //     case 'error':
+        //         return $this->failed('隧道出错。');
+        //     case 'suspended':
+        //         return $this->failed('隧道已暂停。');
+        // }
 
         if ($request->input('content')['proxy_type'] !== $host->protocol) {
             return $this->failed('不允许的隧道协议。');
@@ -69,14 +73,11 @@ class PortManagerController extends Controller
         }
 
         // cache
-        // $cache_key = 'frp_user_' . $request->content['proxy_name'];
-        // Cache::put($cache_key, $host->user_id);
-
         $cache_key = 'frpTunnel_data_' . $host->client_token;
         Cache::put($cache_key, ['status' => 'online']);
 
-        // $host->run_id = $request->input('content')['user']['run_id'];
-        // $host->saveQuietly();
+        $host->run_id = $request->input('content')['user']['run_id'];
+        $host->saveQuietly();
 
         // $data = [
         //     'message' => '隧道 ' . $host->name . ' 已启动。',

@@ -16,6 +16,8 @@ return new class extends Migration
 
             $table->string('name')->index();
 
+            $table->string('client_token')->index();
+
             $table->char('protocol', 5)->index()->default('tcp');
 
             $table->string('custom_domain')->nullable()->index();
@@ -38,6 +40,9 @@ return new class extends Migration
             // use_compression
             $table->boolean('use_compression')->default(false)->index();
 
+            $table->string('run_id')->nullable()->index();
+
+            $table->string('locked_reason')->nullable();
 
             $table->timestamps();
         });

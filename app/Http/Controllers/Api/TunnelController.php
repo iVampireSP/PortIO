@@ -147,10 +147,17 @@ class TunnelController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(TunnelRequest $request, Tunnel $tunnel)
+    public function show(TunnelRequest $tunnelRequest, Tunnel $tunnel)
     {
-        unset($request);
+        unset($tunnelRequest);
+        $tunnel['config'] = $tunnel->getConfig();
         return $this->success($tunnel);
+    }
+
+    public function close(TunnelRequest $tunnelRequest, Tunnel $tunnel) {
+        unset($tunnelRequest);
+        $tunnel->close();
+        return $this->noContent();
     }
 
     /**

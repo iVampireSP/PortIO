@@ -25,10 +25,10 @@ const items = ref([
         name: "隧道",
         route: "tunnels",
     },
-      {
-        name: "服务器列表",
-        route: "servers",
-    },
+    // {
+    //     name: "服务器列表",
+    //     route: "servers",
+    // },
     {
         name: "创建隧道",
         route: "tunnels.create",
@@ -36,14 +36,14 @@ const items = ref([
 ]);
 
 // 如果是管理员
-if (window.Base.User.is_admin) {
-    // items.value.push({
-    //     name: "服务器",
-    //     route: "servers",
-    // });
-    items.value.push({
-        name: "创建服务器",
-        route: "servers.create",
-    });
-}
+// if (window.Base.User.is_admin) {
+//     // items.value.push({
+//     //     name: "服务器",
+//     //     route: "servers",
+//     // });
+//     items.value.push({
+//         name: "创建服务器",
+//         route: "servers.create",
+//     });
+// }
 </script>

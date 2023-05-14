@@ -11,12 +11,12 @@ class Frp
 {
     public string|int $id;
 
-    protected Server $frpServer;
+    protected Server $server;
 
-    public function __construct($id)
+    public function __construct(Server $server)
     {
-        $this->frpServer = (new Server)->find($id);
-        $this->id = $id;
+        $this->server = $server;
+        $this->id = $server->id;
     }
 
     public function serverInfo()
@@ -48,22 +48,22 @@ class Frp
 
     protected function get($url)
     {
-        $addr = 'http://' . $this->frpServer->server_address . ':' . $this->frpServer->dashboard_port . '/api' . $url;
+        $addr = 'http://' . $this->server->server_address . ':' . $this->server->dashboard_port . '/api' . $url;
         try {
-            $resp = Http::timeout(3)->withBasicAuth($this->frpServer->dashboard_user, $this->frpServer->dashboard_password)->get($addr)->json() ?? [];
+            $resp = Http::timeout(3)->withBasicAuth($this->server->dashboard_user, $this->server->dashboard_password)->get($addr)->json() ?? [];
 
             // if under maintenance
 
-            if ($this->frpServer->status !== 'maintenance') {
-                if ($this->frpServer->status !== 'up') {
-                    $this->frpServer->status = 'up';
+            if ($this->server->status !== 'maintenance') {
+                if ($this->server->status !== 'up') {
+                    $this->server->status = 'up';
                 }
             }
         } catch (Exception) {
-            $this->frpServer->status = 'down';
+            $this->server->status = 'down';
             $resp = false;
         } finally {
-            $this->frpServer->save();
+            $this->server->save();
         }
 
         return $resp;

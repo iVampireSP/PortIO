@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
+use App\Http\Controllers\Admin\ServerController;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
@@ -12,7 +13,15 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->call(function () {
+            (new ServerController())->checkServer();
+        })->everyMinute()->name('FrpServer')->withoutOverlapping()->onOneServer();
+
+        // $schedule->job(new Cost())->hourly()->name('FrpServerCost')->withoutOverlapping()->onOneServer();
+
+        // every three days
+        // $schedule->job(new ReviewWebsiteJob())->daily()->name('reviewWebsiteJob')->withoutOverlapping()->onOneServer();
+
     }
 
     /**
