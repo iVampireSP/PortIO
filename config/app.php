@@ -18,6 +18,8 @@ return [
     'name' => env('APP_NAME', 'Laravel'),
     'display_name' => env('APP_DISPLAY_NAME', 'Laravel'),
 
+    'api_token' => env('API_TOKEN', null),
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment
