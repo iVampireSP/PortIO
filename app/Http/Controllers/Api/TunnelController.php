@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\TunnelRequest;
 use App\Models\Server;
 use App\Models\Tunnel;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\TunnelRequest;
+use App\Support\Frp;
+use Illuminate\Support\Facades\Cache;
 
 class TunnelController extends Controller
 {
@@ -150,7 +152,21 @@ class TunnelController extends Controller
     public function show(TunnelRequest $tunnelRequest, Tunnel $tunnel)
     {
         unset($tunnelRequest);
+
+        $tunnel->load('server');
+
         $tunnel['config'] = $tunnel->getConfig();
+
+        $frp = new Frp($tunnel->server);
+        $traffic = $frp->traffic($tunnel->client_token) ?? [];
+
+        if (!$traffic) {
+            $traffic = [];
+        }
+
+
+        $tunnel['traffic'] = $traffic;
+
         return $this->success($tunnel);
     }
 

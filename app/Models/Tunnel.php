@@ -56,6 +56,9 @@ class Tunnel extends Model
                 $cache_key = 'frpTunnel_data_' . $this->client_token;
                 Cache::forget($cache_key);
 
+                $cache_key = 'frpTunnel_data_' . $this->client_token . '_lock';
+                Cache::put($cache_key, 1, 30);
+
                 $this->run_id = null;
                 $this->saveQuietly();
             }

@@ -12,6 +12,7 @@ class HomeController extends Controller
             return view('spa');
         }
 
-        return view('index');
+        return redirect()->route('login');
+        // return view('index');
     }
 }

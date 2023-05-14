@@ -57,7 +57,7 @@
 
     <script>
         function updateTraffic(userId, input) {
-            const url = '/users/' + userId
+            const url = '/admin/users/' + userId
             // xml http request
             const xhr = new XMLHttpRequest();
             xhr.open('PATCH', url);

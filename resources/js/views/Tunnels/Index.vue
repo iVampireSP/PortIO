@@ -9,9 +9,9 @@
                 <th scope="col">协议</th>
                 <th scope="col">本地地址</th>
                 <th scope="col">远程端口/域名</th>
-                <th scope="col">连接数</th>
+                <!-- <th scope="col">连接数</th>
                 <th scope="col">下载流量</th>
-                <th scope="col">上载流量</th>
+                <th scope="col">上载流量</th> -->
                 <th scope="col">服务器</th>
                 <th scope="col">状态</th>
             </tr>
@@ -52,9 +52,9 @@
                     </span>
                 </td>
 
-                <td>0</td>
+                <!-- <td>0</td>
                 <td>0.000 Bytes</td>
-                <td>0.000 Bytes</td>
+                <td>0.000 Bytes</td> -->
 
                 <td>{{ tunnel.server.name }}</td>
 

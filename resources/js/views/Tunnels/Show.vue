@@ -4,7 +4,7 @@
     </div>
 
     <div>
-        <div v-show="chart" id="chart" style="height: 400px"></div>
+        <div id="chart" style="height: 400px"></div>
     </div>
 
     <div>
@@ -15,6 +15,10 @@
 {{ tunnel.config.client }}
         </pre>
     </div>
+
+     <!-- <div v-if="tunnel.tunnel">
+
+     </div> -->
 
     <div v-if="tunnel.run_id" class="mb-3">
         <h2>强制下线</h2>
@@ -34,6 +38,7 @@ import { onMounted, onUnmounted, ref } from "vue";
 import http from "../../plugins/http";
 import router from "../../plugins/router";
 import * as echarts from "echarts";
+import Humanize from 'humanize-plus'
 const showChart = ref(false);
 let chart = undefined;
 
@@ -128,10 +133,12 @@ let chartOptions = {
 
 function initChart() {
     let chartDom = document.getElementById("chart");
+
     chart = echarts.init(chartDom, {
         backgroundColor: "transparent",
         renderer: "svg",
     });
+
 
     chartOptions && chart.setOption(chartOptions);
 }
@@ -147,7 +154,9 @@ function deleteTunnel() {
 }
 
 function kickTunnel() {
-    http.post(`/tunnels/${tunnel_id}/close`);
+    http.post(`/tunnels/${tunnel_id}/close`).then(() => {
+        refresh();
+    });
 }
 
 function refresh() {
@@ -160,8 +169,12 @@ function refresh() {
         // console.log(res.data);
 
         if (res.data.traffic) {
+
+            console.log(res.data.traffic)
+            console.log(showChart.value)
+
             if (!showChart.value) {
-                // initChart()
+                initChart()
                 showChart.value = true;
             }
 

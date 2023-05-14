@@ -34,6 +34,12 @@ class PortManagerController extends Controller
             return $this->failed('此服务器暂时不接受新的连接。');
         }
 
+        // cache
+        $cache_key = 'frpTunnel_data_' . $request->input('content')['proxy_name'] . '_lock';
+        if (Cache::has($cache_key)) {
+            return $this->failed('此隧道正在被操作，请稍后再试。');
+        }
+
         // Search tunnel
         $host = Tunnel::where('client_token', $request->input('content')['proxy_name'])->where('server_id', $server->id)->first();
         if (is_null($host)) {
