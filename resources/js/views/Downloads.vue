@@ -1,7 +1,7 @@
 <template>
-    <h1>客户端下载</h1>
+    <h3>客户端下载</h3>
 
-    <table class="table table-bordered">
+    <table class="table table-bordered mt-3">
         <thead>
             <tr>
                 <th>名称</th>

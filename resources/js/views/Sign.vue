@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>流量补给</h1>
+        <h3>流量补给</h3>
 
         <div>
             <p>当前流量: {{ traffic.traffic }}GB</p>
