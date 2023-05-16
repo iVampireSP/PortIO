@@ -3,10 +3,94 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Support\WHMCS;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Http\Request;
+
 
 class TrafficController extends Controller
 {
+
+    public function price()
+    {
+        return $this->success([
+            'price_per_gb' => config('settings.price_per_gb')
+        ]);
+    }
+
+    public function providers()
+    {
+        $config = config('whmcs');
+
+        // 获取 config 的所有的 key
+        $providers = array_keys($config);
+
+        return $this->success($providers);
+    }
+
+    public function payments(Request $request, $provider)
+    {
+        try {
+            $whmcs = new WHMCS($provider);
+        } catch (\Exception $e) {
+            return $this->error($e->getMessage());
+        }
+
+        $payments = $whmcs->getPayments();
+
+        return $this->success($payments);
+    }
+
+    public function index(Request $request)
+    {
+        $user = auth()->user();
+
+        $traffic = $user->traffic ?? 0;
+
+        $day = now()->day;
+        $last_sign_at = Cache::get('traffic_sign:' . $day . '-' . $user->id, null);
+
+        return $this->success([
+            'traffic' => $traffic,
+            'is_signed' => $last_sign_at
+        ]);
+    }
+
+    public function charge(Request $request, string $provider)
+    {
+        $request->validate([
+            'payment' => 'required',
+            'traffic' => 'required|integer|min:1'
+        ]);
+
+        $price = bcmul(config('settings.price_per_gb'), $request->input('traffic'), 2);
+
+
+        try {
+            $whmcs = new WHMCS($provider);
+        } catch (\Exception $e) {
+            return $this->error('提供商不存在');
+        }
+
+        if (!$whmcs->hasPayment($request->input('payment'))) {
+            return $this->notFound('支付方式不存在');
+        }
+
+        $user = $request->user();
+
+        try {
+            $result = $whmcs->api_addTraffic($user->email, $request->input('payment'), $request->input('traffic'), $price);
+
+            return $this->success($result);
+        } catch (\Exception $e) {
+            return $this->error($e->getMessage());
+        }
+
+
+
+    }
+
+
     public function free()
     {
         $user = auth()->user();

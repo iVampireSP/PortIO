@@ -51,6 +51,14 @@ const routes = [
             title: "签到",
         },
     },
+    {
+        path: "/charge",
+        name: "charge",
+        component: () => import("../views/Charge.vue"),
+        meta: {
+            title: "流量充值",
+        },
+    },
 ];
 
 

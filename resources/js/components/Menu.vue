@@ -37,17 +37,22 @@ const items = ref([
         route: "index",
     },
     {
-        name: "签到",
-        route: "sign",
-    },
-    {
-        name: "隧道",
+        name: "穿透隧道",
         route: "tunnels",
     },
     {
         name: "创建隧道",
         route: "tunnels.create",
     },
+    {
+        name: "签到",
+        route: "sign",
+    },
+    {
+        name: "充值",
+        route: "charge",
+    },
+
     {
         name: "客户端下载",
         route: "downloads",

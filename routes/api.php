@@ -23,9 +23,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('traffic', [TrafficController::class, 'free']);
     Route::post('traffic', [TrafficController::class, 'sign']);
 
+    Route::get('price', [TrafficController::class, 'price']);
+    Route::get('providers', [TrafficController::class, 'providers']);
+    Route::get('providers/{provider}/payments', [TrafficController::class, 'payments']);
+    Route::post('providers/{provider}/charge', [TrafficController::class, 'charge']);
+
 });
 
-Route::prefix('application')->name('application.')->middleware('api_token')->group(function () {
+Route::prefix('application')->name('application.')->middleware('whmcs_api')->group(function () {
     Route::post('users/{user:email}/traffic', [ApplicationUserController::class, 'addTraffic']);
 });
-
