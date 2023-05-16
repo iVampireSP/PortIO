@@ -1,6 +1,6 @@
 {
-  "_http-48767dec.js": {
-    "file": "assets/http-48767dec.js",
+  "_http-00444618.js": {
+    "file": "assets/http-00444618.js",
     "imports": [
       "resources/js/app.js"
     ]
@@ -38,12 +38,12 @@
       "resources/js/views/Downloads.vue",
       "resources/js/views/Sign.vue"
     ],
-    "file": "assets/app-3665a2ea.js",
+    "file": "assets/app-a9131e5d.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   },
   "resources/js/views/Downloads.vue": {
-    "file": "assets/Downloads-8f250339.js",
+    "file": "assets/Downloads-2af9f6b8.js",
     "imports": [
       "resources/js/app.js"
     ],
@@ -51,45 +51,45 @@
     "src": "resources/js/views/Downloads.vue"
   },
   "resources/js/views/Index.vue": {
-    "file": "assets/Index-eba5401f.js",
+    "file": "assets/Index-e000be93.js",
     "imports": [
-      "_http-48767dec.js",
+      "_http-00444618.js",
       "resources/js/app.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/views/Index.vue"
   },
   "resources/js/views/Sign.vue": {
-    "file": "assets/Sign-1157ce49.js",
+    "file": "assets/Sign-75857aff.js",
     "imports": [
-      "_http-48767dec.js",
+      "_http-00444618.js",
       "resources/js/app.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/views/Sign.vue"
   },
   "resources/js/views/Tunnels/Create.vue": {
-    "file": "assets/Create-65c6bd7e.js",
+    "file": "assets/Create-6af17086.js",
     "imports": [
       "resources/js/app.js",
-      "_http-48767dec.js"
+      "_http-00444618.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/views/Tunnels/Create.vue"
   },
   "resources/js/views/Tunnels/Index.vue": {
-    "file": "assets/Index-e6e87aaf.js",
+    "file": "assets/Index-2a1bcc19.js",
     "imports": [
-      "_http-48767dec.js",
+      "_http-00444618.js",
       "resources/js/app.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/views/Tunnels/Index.vue"
   },
   "resources/js/views/Tunnels/Show.vue": {
-    "file": "assets/Show-6d066ab0.js",
+    "file": "assets/Show-5a43fbec.js",
     "imports": [
-      "_http-48767dec.js",
+      "_http-00444618.js",
       "resources/js/app.js"
     ],
     "isDynamicEntry": true,
