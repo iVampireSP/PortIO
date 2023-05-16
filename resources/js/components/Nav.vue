@@ -25,25 +25,6 @@
                     id="navbarSupportedContent"
                 >
                     <MenuVue />
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a
-                                class="nav-link text-auto"
-                                target="_blank"
-                                href="https://wiki.laecloud.com/PortIO"
-                                >文档</a
-                            >
-                        </li>
-                        <li class="nav-item">
-                            <a
-                                class="nav-link text-auto"
-                                href="/auth/logout"
-                                >退出登录</a
-                            >
-                        </li>
-                    </ul>
                 </div>
             </div>
         </nav>
