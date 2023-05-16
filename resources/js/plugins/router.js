@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
-// import app from "../config/app";
+import { Tooltip, Toast } from 'bootstrap';
+
 
 const routes = [
     {
@@ -58,8 +59,26 @@ const isAdmin = () => {
     return window.Base.User.is_admin;
 };
 
+
+const router = createRouter({
+    history: createWebHistory(),
+    routes,
+});
+
+
 // before each route
 routes.forEach((route) => {
+
+    router.beforeEach((to, from) => {
+        new Tooltip(document.body, {
+            selector: "[data-bs-toggle='tooltip']",
+        });
+
+        Array.from(document.querySelectorAll('.toast')).forEach(
+            (toastNode) => new Toast(toastNode)
+        );
+    });
+
     route.beforeEnter = (to, from, next) => {
         // 如果是管理员页面，且用户不是管理员，则跳转到首页
         if (route.meta.admin && !isAdmin()) {
@@ -70,10 +89,5 @@ routes.forEach((route) => {
     };
 });
 
-
-const router = createRouter({
-    history: createWebHistory(),
-    routes,
-});
 
 export default router;
