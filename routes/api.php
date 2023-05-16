@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\ServerController;
 use App\Http\Controllers\Api\TunnelController;
 use App\Http\Controllers\Api\PortManagerController;
+use App\Http\Controllers\Api\TicketController;
 use App\Http\Controllers\Api\TrafficController;
 use App\Http\Controllers\Application\UserController as ApplicationUserController;
 
@@ -27,6 +28,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('providers', [TrafficController::class, 'providers']);
     Route::get('providers/{provider}/payments', [TrafficController::class, 'payments']);
     Route::post('providers/{provider}/charge', [TrafficController::class, 'charge']);
+    Route::post('providers/{provider}/ticket', [TicketController::class, 'submit']);
 
 });
 

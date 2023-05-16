@@ -59,6 +59,14 @@ const routes = [
             title: "流量充值",
         },
     },
+    {
+        path: "/ticket",
+        name: "ticket",
+        component: () => import("../views/Ticket.vue"),
+        meta: {
+            title: "发布工单",
+        },
+    },
 ];
 
 

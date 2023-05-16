@@ -52,7 +52,10 @@ const items = ref([
         name: "充值",
         route: "charge",
     },
-
+    {
+        name: "发工单",
+        route: "ticket",
+    },
     {
         name: "客户端下载",
         route: "downloads",

@@ -137,4 +137,14 @@ class WHMCS
         ]);
     }
 
+    public function api_openTicket(string $email, string $title, string $content)
+    {
+        return $this->api('openTicket', [
+            'email' => $email,
+            'title' => $title,
+            'content' => $content,
+            'department_id' => $this->config['department_id'] ?? 1,
+        ]);
+    }
+
 }
