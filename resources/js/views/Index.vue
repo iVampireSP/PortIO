@@ -23,7 +23,7 @@
     </div>
 
     <h3>访问密钥</h3>
-    <div class="mt-3" v-if="!user.realnamed">
+    <div class="mt-3">
         <p>
             访问密钥是用于访问 {{ sitename }} API
             的密钥，您可以使用它来开发自己的客户端。
