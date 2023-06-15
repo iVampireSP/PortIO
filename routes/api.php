@@ -16,7 +16,7 @@ Route::prefix('tunnel')->name('api.tunnel.')->group(function () {
 
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('user', UserController::class);
+    Route::get('user', [UserController::class, 'user']);
     Route::apiResource('tunnels', TunnelController::class);
     Route::post('tunnels/{tunnel}/close', [TunnelController::class, 'close']);
     Route::apiResource('servers', ServerController::class);
@@ -29,6 +29,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('providers/{provider}/payments', [TrafficController::class, 'payments']);
     Route::post('providers/{provider}/charge', [TrafficController::class, 'charge']);
     Route::post('providers/{provider}/ticket', [TicketController::class, 'submit']);
+
+
+    Route::post('tokens', [UserController::class, 'create']);
+    Route::delete('tokens', [UserController::class, 'deleteAll']);
 
 });
 
