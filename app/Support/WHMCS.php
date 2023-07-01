@@ -2,6 +2,8 @@
 
 namespace App\Support;
 
+use Illuminate\Support\Facades\Log;
+
 class WHMCS
 {
     private string $url;
@@ -79,14 +81,16 @@ class WHMCS
 
         $json = json_decode($response, true);
 
-        throw_if(
-            is_null($json),
-            new \Exception('WHMCS response is not valid JSON')
-        );
+        if (is_null($json)) {
+            Log::error('WHMCS response is not valid JSON', [$response]);
+
+
+            new \Exception('WHMCS response is not valid JSON');
+        }
 
         throw_if(
             isset($json['result']) && $json['result'] !== 'success',
-            new \Exception($json['message'])
+            new \Exception('Request WHMCS Error: ' . $json['message'])
         );
 
         return $json;
@@ -98,9 +102,10 @@ class WHMCS
             'api_token' => $this->api_token
         ], $params);
 
+        $url = $this->url . '/modules/addons/PortIOInvoice/api/' . $action . '.php';
 
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $this->url . '/modules/addons/PortIOInvoice/api/' . $action . '.php');
+        curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt(
             $ch,
@@ -109,18 +114,29 @@ class WHMCS
         );
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         $response = curl_exec($ch);
+        $json = json_decode($response, true);
+        $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
 
-        $json = json_decode($response, true);
+        if (is_null($json)) {
+            Log::error('WHMCS response is not valid JSON', [$url, $code, $response]);
+
+            new \Exception('WHMCS response is not valid JSON');
+        }
+
+        $message = '未知错误';
+        if (isset($json['message'])) {
+            $message = $json['message'];
+        }
 
         throw_if(
-            is_null($json),
-            new \Exception('WHMCS response is not valid JSON')
+            isset($json['result']) && $json['result'] !== 'success',
+            new \Exception('Request WHMCS Error: ' . $message)
         );
 
         throw_if(
             isset($json['status']) && $json['status'] !== true,
-            new \Exception($json['message'] ?? '未知错误')
+            new \Exception($message)
         );
 
         return $json;
@@ -146,5 +162,4 @@ class WHMCS
             'department_id' => $this->config['department_id'] ?? 1,
         ]);
     }
-
 }
