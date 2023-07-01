@@ -2,6 +2,7 @@
 
 namespace App\Support;
 
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
 class WHMCS
@@ -67,19 +68,11 @@ class WHMCS
         ], $params);
 
 
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $this->url . '/includes/api.php');
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt(
-            $ch,
-            CURLOPT_POSTFIELDS,
-            http_build_query($params)
-        );
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        $response = curl_exec($ch);
-        curl_close($ch);
+        $http = Http::asForm()->post($this->url . '/includes/api.php', $params)->throw();
 
-        $json = json_decode($response, true);
+        $response = $http->body();
+        $json = $http->json();
+
 
         if (is_null($json)) {
             Log::error('WHMCS response is not valid JSON', [$response]);
@@ -104,19 +97,11 @@ class WHMCS
 
         $url = $this->url . '/modules/addons/PortIOInvoice/api/' . $action . '.php';
 
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt(
-            $ch,
-            CURLOPT_POSTFIELDS,
-            http_build_query($params)
-        );
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        $response = curl_exec($ch);
-        $json = json_decode($response, true);
-        $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        curl_close($ch);
+        $http = Http::asForm()->post($url, $params)->throw();
+
+        $code = $http->status();
+        $response = $http->body();
+        $json = $http->json();
 
         if (is_null($json)) {
             Log::error('WHMCS response is not valid JSON', [$url, $code, $response]);
