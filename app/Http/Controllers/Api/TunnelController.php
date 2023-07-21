@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\Server;
-use App\Models\Tunnel;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TunnelRequest;
+use App\Models\Server;
+use App\Models\Tunnel;
 use App\Support\Frp;
-use Illuminate\Support\Facades\Cache;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class TunnelController extends Controller
 {
@@ -176,7 +175,8 @@ class TunnelController extends Controller
         return $this->success($tunnel);
     }
 
-    public function close(TunnelRequest $tunnelRequest, Tunnel $tunnel) {
+    public function close(TunnelRequest $tunnelRequest, Tunnel $tunnel)
+    {
         unset($tunnelRequest);
         $tunnel->close();
         return $this->noContent();

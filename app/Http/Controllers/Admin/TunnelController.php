@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Tunnel;
-use Illuminate\View\View;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Tunnel;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\View\View;
 
 class TunnelController extends Controller
 {
@@ -31,7 +31,7 @@ class TunnelController extends Controller
             }
 
             if ($request->{$key}) {
-                $hosts = $hosts->where($key, 'LIKE', '%'.$value.'%');
+                $hosts = $hosts->where($key, 'LIKE', '%' . $value . '%');
             }
         }
 
@@ -45,7 +45,7 @@ class TunnelController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  Tunnel  $tunnel
+     * @param Tunnel $tunnel
      * @return View
      */
     public function show(Tunnel $tunnel)
@@ -58,8 +58,8 @@ class TunnelController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  Tunnel  $tunnel
+     * @param \Illuminate\Http\Request $request
+     * @param Tunnel $tunnel
      * @return RedirectResponse
      */
     public function update(Request $request, Tunnel $tunnel)
@@ -76,7 +76,7 @@ class TunnelController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Tunnel  $host
+     * @param Tunnel $host
      * @return RedirectResponse
      */
     public function destroy(Tunnel $host)

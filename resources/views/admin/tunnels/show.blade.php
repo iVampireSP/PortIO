@@ -2,28 +2,29 @@
 
     @php($cache = Cache::get('frpTunnel_data_' . $tunnel->client_token, []))
 
-    <p> 隧道状态：
+    <p>隧道状态:&nbsp;
         @if ($cache['status'] ?? false === 'online')
-            <span style="color: green">在线</span>
+            <span class="text-success">在线</span>
         @else
-            <span style="color: red">离线</span>
+            <span class="text-danger">离线</span>
         @endif
     </p>
 
-    <p> 连接数：{{ $cache['cur_conns'] ?? 0 }}</p>
-    <p> 下载流量：{{ unitConversion($cache['today_traffic_in'] ?? 0) }}</p>
-    <p> 上载流量：{{ unitConversion($cache['today_traffic_out'] ?? 0) }}</p>
+    <p>连接数: {{ $cache['cur_conns'] ?? 0 }}</p>
+    <p>下载流量: {{ unitConversion($cache['today_traffic_in'] ?? 0) }}</p>
+    <p>上载流量: {{ unitConversion($cache['today_traffic_out'] ?? 0) }}</p>
 
-    <hr />
+    <hr/>
     <p>如果填写锁定原因，隧道将会立即下线，并且客户端无法登录。</p>
     <form action="{{ route('admin.tunnels.update', $tunnel) }}" method="POST">
         @csrf
         @method('PATCH')
-        <input type="text" name="locked_reason" @if($tunnel->locked_reason) value="{{$tunnel->locked_reason}}" @endif placeholder="留空解除"  />
-        <button type="submit">确定</button>
+        <div class="input-group">
+            <input type="text" name="locked_reason" @if($tunnel->locked_reason) value="{{$tunnel->locked_reason}}"
+                   @endif placeholder="留空解除" class="form-control"/>
+            <button type="submit" class="btn btn-primary">确定</button>
+        </div>
     </form>
-
-
 
 
     {{-- @if ($host->protocol == 'http' || $host->protocol == 'https')
@@ -31,8 +32,8 @@
         <img src="" />
     @endif --}}
 
-    <h3>配置文件</h3>
-    <textarea id="config" cols="80" rows="20" readonly="readonly"></textarea>
+    <h4 class="mt-3 mb-3">配置文件</h4>
+    <textarea id="config" cols="80" rows="20" readonly class="form-control"></textarea>
     <script>
         let tunnel_config = {!! $tunnel !!}
         // let put_config()

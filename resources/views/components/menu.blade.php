@@ -6,7 +6,7 @@
             </a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"
-                aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+                    aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -34,15 +34,16 @@
                         @if (auth()->user()->is_admin)
                             <li class="nav-item">
                                 <a class="nav-link" aria-current="page"
-                                    href="{{ route('servers.create') }}">创建服务器</a>
+                                   href="{{ route('servers.create') }}">创建服务器</a>
                             </li>
                         @endif
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="{{ route('tunnels.create') }}">创建隧道</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                               aria-haspopup="true"
+                               aria-expanded="false">
                                 {{ auth()->user()->name }}
                             </a>
 
@@ -50,7 +51,7 @@
                                 <a class="dropdown-item" href="{{ route('servers.index') }}">服务器列表</a>
                                 <a class="dropdown-item" href="{{ route('tunnels.index') }}">隧道列表</a>
                                 <a class="dropdown-item" href="#"
-                                    onclick="axios.post(route('login.logout')).then(() => {window.location.reload()})">
+                                   onclick="axios.post(route('login.logout')).then(() => {window.location.reload()})">
                                     注销&nbsp;<span x-html="config.app_html"></span>
                                 </a>
                             </div>

@@ -7,11 +7,6 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function user(Request $request)
-    {
-        return $this->success($request->user('sanctum'));
-    }
-
     public function create(Request $request)
     {
         $name = date('Y-m-d H:i:s');
@@ -20,6 +15,11 @@ class UserController extends Controller
         return $this->success([
             'token' => $token->plainTextToken,
         ]);
+    }
+
+    public function user(Request $request)
+    {
+        return $this->success($request->user('sanctum'));
     }
 
     public function deleteAll(Request $request)
