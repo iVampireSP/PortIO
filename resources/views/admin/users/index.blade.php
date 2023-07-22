@@ -17,7 +17,7 @@
     </form>
 
 
-    <table class="mt-3 table table-hover text-center table-bordered">
+    <table class="mt-3 table table-hover text-center table-bordered" style="vertical-align: middle">
         {{-- 表头 --}}
         <thead>
         <tr>
