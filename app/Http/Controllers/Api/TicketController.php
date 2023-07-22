@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Support\WHMCS;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class TicketController extends Controller
 {
-    public function submit(Request $request, string $provider) {
+    public function submit(Request $request, string $provider)
+    {
         $request->validate([
             'title' => 'required',
             'content' => 'required',

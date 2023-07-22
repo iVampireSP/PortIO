@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\User;
-use Illuminate\View\View;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class UserController extends Controller
 {
@@ -25,7 +25,7 @@ class UserController extends Controller
                 continue;
             }
             if ($request->{$key}) {
-                $users = $users->where($key, 'LIKE', '%'.$value.'%');
+                $users = $users->where($key, 'LIKE', '%' . $value . '%');
             }
         }
 
@@ -54,7 +54,7 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  User $user
+     * @param User $user
      * @return RedirectResponse
      */
     public function destroy(User $user)

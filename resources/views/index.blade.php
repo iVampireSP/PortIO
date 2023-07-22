@@ -10,8 +10,8 @@
 
 
 <body>
-   <span>欢迎使用: {{ config('app.display_name') }}</span>
+<span>欢迎使用: {{ config('app.display_name') }}</span>
 
-   <a href="{{ route('login') }}">登录</a>
+<a href="{{ route('login') }}">登录</a>
 </body>
 </html>

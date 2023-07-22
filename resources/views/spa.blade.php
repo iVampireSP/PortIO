@@ -2,10 +2,10 @@
 <html lang="zh">
 
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
-    <meta name="format-detection" content="telephone=no" />
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no"/>
 
     <title>{{ config('app.display_name') }}</title>
 
@@ -24,7 +24,7 @@
 </head>
 
 <body>
-    <div id="app"></div>
+<div id="app"></div>
 </body>
 
 </html>
