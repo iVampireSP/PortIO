@@ -10,7 +10,7 @@
 
     <title>{{ config('app.name', 'LAE') }} 后台</title>
 
-    @vite(['resources/bs/bootstrap.min.css', 'resources/bs/bootstrap.bundle.min.js'])
+    @vite(['public/bs/bootstrap.min.css', 'public/bs/bootstrap.bundle.min.js'])
 </head>
 
 <body>
