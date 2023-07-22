@@ -48,7 +48,7 @@ class AuthController extends Controller
                     'redirect_uri' => config('oauth.callback_uri'),
                     'code' => $request->input('code'),
                 ],
-                'verify' => false,
+//                'verify' => false,
             ])->getBody();
         } catch (GuzzleException $e) {
         }
@@ -60,7 +60,7 @@ class AuthController extends Controller
                     'Accept' => 'application/json',
                     'Authorization' => 'Bearer ' . $authorize->access_token,
                 ],
-                'verify' => false
+//                'verify' => false
             ])->getBody();
         } catch (GuzzleException $e) {
         }
