@@ -12,9 +12,6 @@
         <label for="name" class="form-label">下载链接</label>
         <input type="text" name="url" id="url" placeholder="下载链接" class="form-control mb-3" required value="{{ $client->url }}">
 
-        <label for="name" class="form-label">作者</label>
-        <input type="text" name="author" id="author" placeholder="作者" class="form-control mb-3" required value="{{ $client->author }}">
-
         <button class="btn btn-primary" type="submit">保存更改</button>
     </form>
 </x-app-layout>

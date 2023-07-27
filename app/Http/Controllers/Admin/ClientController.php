@@ -38,7 +38,6 @@ class ClientController extends Controller
             'name' => 'required|max:80',
             'arch' => 'required|max:30',
             'url' => 'required',
-            'author' => 'required|max:30',
         ]);
         $request_data = $request->toArray();
         Client::create($request_data);
@@ -51,7 +50,6 @@ class ClientController extends Controller
             'name' => 'required|max:80',
             'arch' => 'required|max:30',
             'url' => 'required',
-            'author' => 'required|max:30',
         ]);
 
         $data = $request->all();
