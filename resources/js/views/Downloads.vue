@@ -6,7 +6,6 @@
         <tr>
             <th>名称</th>
             <th>架构</th>
-            <th>作者</th>
             <th>下载</th>
         </tr>
         </thead>
@@ -15,7 +14,6 @@
         <tr v-for="i in items">
             <td>{{ i.name }}</td>
             <td>{{ i.arch }}</td>
-            <td>{{ i.author }}</td>
             <td>
                 <a :href="i.url">下载</a>
             </td>

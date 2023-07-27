@@ -10,6 +10,5 @@ class Client extends Model
         'name',
         'arch',
         'url',
-        'author',
     ];
 }
