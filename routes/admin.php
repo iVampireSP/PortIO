@@ -2,11 +2,9 @@
 
 use App\Http\Controllers\Admin\TunnelController;
 use App\Http\Controllers\Admin\IndexController;
-use App\Http\Controllers\Admin\ReplyController;
-use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\ServerController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\WorkOrderController;
+use App\Http\Controllers\Admin\ClientController;
 use Illuminate\Support\Facades\Route;
 
 Route::withoutMiddleware('auth:admin')->group(function() {
@@ -21,6 +19,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('users', UserController::class);
     Route::resource('servers', ServerController::class);
     Route::resource('tunnels', TunnelController::class);
+    Route::resource('clients', ClientController::class);
 
 
     Route::get('/logout', [IndexController::class, 'logout'])->name('logout');
