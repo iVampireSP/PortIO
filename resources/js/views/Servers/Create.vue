@@ -4,64 +4,64 @@
             <h3>服务器</h3>
 
             <div class="mb-3">
-                <label for="serverName" class="form-label">服务器名称</label>
+                <label class="form-label" for="serverName">服务器名称</label>
                 <input
-                    type="text"
-                    required
-                    class="form-control"
                     id="serverName"
-                    placeholder="输入服务器名称，他将会被搜索到"
-                    name="name"
                     v-model="data.name"
+                    class="form-control"
+                    name="name"
+                    placeholder="输入服务器名称，他将会被搜索到"
+                    required
+                    type="text"
                 />
             </div>
 
             <h3>Frps 信息</h3>
             <div class="mb-3">
-                <label for="serverAddr" class="form-label">Frps 地址</label>
+                <label class="form-label" for="serverAddr">Frps 地址</label>
                 <input
-                    type="text"
-                    required
-                    class="form-control"
                     id="serverAddr"
-                    name="server_address"
                     v-model="data.server_address"
+                    class="form-control"
+                    name="server_address"
+                    required
+                    type="text"
                 />
             </div>
 
             <div class="mb-3">
-                <label for="serverPort" class="form-label">Frps 端口</label>
+                <label class="form-label" for="serverPort">Frps 端口</label>
                 <input
-                    type="text"
-                    required
-                    class="form-control"
                     id="serverPort"
-                    name="server_port"
                     v-model="data.server_port"
+                    class="form-control"
+                    name="server_port"
+                    required
+                    type="text"
                 />
             </div>
 
             <div class="mb-3">
-                <label for="serverToken" class="form-label">Frps 令牌</label>
+                <label class="form-label" for="serverToken">Frps 令牌</label>
                 <input
-                    type="text"
-                    required
-                    class="form-control"
                     id="serverToken"
-                    name="token"
                     v-model="data.token"
+                    class="form-control"
+                    name="token"
+                    required
+                    type="text"
                 />
             </div>
 
             <h3>服务器位置</h3>
             <div class="form-check">
                 <input
-                    class="form-check-input"
-                    type="checkbox"
-                    name="is_china_mainland"
-                    value="1"
                     id="is_china_mainland"
                     v-model="data.is_china_mainland"
+                    class="form-check-input"
+                    name="is_china_mainland"
+                    type="checkbox"
+                    value="1"
                 />
                 <label class="form-check-label" for="is_china_mainland">
                     在中国大陆
@@ -73,98 +73,98 @@
             <h3>Frps Dashboard 配置</h3>
 
             <div class="mb-3">
-                <label for="dashboardPort" class="form-label">端口</label>
+                <label class="form-label" for="dashboardPort">端口</label>
                 <input
-                    type="text"
-                    required
-                    class="form-control"
                     id="dashboardPort"
-                    name="dashboard_port"
                     v-model="data.dashboard_port"
+                    class="form-control"
+                    name="dashboard_port"
+                    required
+                    type="text"
                 />
             </div>
 
             <div class="mb-3">
-                <label for="dashboardUser" class="form-label">登录用户名</label>
+                <label class="form-label" for="dashboardUser">登录用户名</label>
                 <input
-                    type="text"
-                    required
-                    class="form-control"
                     id="dashboardUser"
-                    name="dashboard_user"
                     v-model="data.dashboard_user"
+                    class="form-control"
+                    name="dashboard_user"
+                    required
+                    type="text"
                 />
             </div>
 
             <div class="mb-3">
-                <label for="dashboardPwd" class="form-label">密码</label>
+                <label class="form-label" for="dashboardPwd">密码</label>
                 <input
-                    type="text"
-                    required
-                    class="form-control"
                     id="dashboardPwd"
-                    name="dashboard_password"
                     v-model="data.dashboard_password"
+                    class="form-control"
+                    name="dashboard_password"
+                    required
+                    type="text"
                 />
             </div>
 
             <h3>端口范围限制</h3>
             <div class="input-group input-group-sm mb-3">
                 <input
-                    type="text"
-                    required
-                    class="form-control"
-                    placeholder="最小端口,比如:1024"
-                    name="min_port"
                     v-model="data.min_port"
+                    class="form-control"
+                    name="min_port"
+                    placeholder="最小端口,比如:1024"
+                    required
+                    type="text"
                 />
                 <input
-                    type="text"
-                    required
-                    class="form-control"
-                    placeholder="最大端口,比如:65535"
-                    name="max_port"
                     v-model="data.max_port"
+                    class="form-control"
+                    name="max_port"
+                    placeholder="最大端口,比如:65535"
+                    required
+                    type="text"
                 />
             </div>
 
             <h3>最多隧道数量</h3>
             <div class="input-group input-group-sm mb-3">
                 <input
-                    type="text"
-                    required
-                    class="form-control"
-                    placeholder="最多隧道数量,比如:1024个隧道"
-                    name="max_tunnels"
                     v-model="data.max_tunnels"
+                    class="form-control"
+                    name="max_tunnels"
+                    placeholder="最多隧道数量,比如:1024个隧道"
+                    required
+                    type="text"
                 />
             </div>
 
             <h3>隧道协议限制</h3>
             <div class="form-check">
                 <input
-                    class="form-check-input"
-                    type="checkbox"
-                    name="allow_http"
-                    value="1"
                     id="allow_http"
                     v-model="data.allow_http"
+                    class="form-check-input"
+                    name="allow_http"
+                    type="checkbox"
+                    value="1"
                 />
                 <label class="form-check-label" for="allow_http">
                     允许 HTTP
                 </label>
-                <br />
+                <br/>
                 超文本传输协议
             </div>
 
             <div class="form-check">
                 <input
-                    class="form-check-input"
-                    type="checkbox"
-                    name="allow_https"
-                    value="1"
                     id="allow_https"
                     v-model="data.allow_https"
+                    class="form-check-input"
+                    name="allow_https"
+                    type="checkbox"
+                    value="1"
                 />
                 <label class="form-check-label" for="allow_https">
                     允许 HTTPS
@@ -173,12 +173,12 @@
 
             <div class="form-check">
                 <input
-                    class="form-check-input"
-                    type="checkbox"
-                    name="allow_tcp"
-                    value="1"
                     id="allow_tcp"
                     v-model="data.allow_tcp"
+                    class="form-check-input"
+                    name="allow_tcp"
+                    type="checkbox"
+                    value="1"
                 />
                 <label class="form-check-label" for="allow_tcp">
                     允许 TCP
@@ -187,12 +187,12 @@
 
             <div class="form-check">
                 <input
-                    class="form-check-input"
-                    type="checkbox"
-                    name="allow_udp"
-                    value="1"
                     id="allow_udp"
                     v-model="data.allow_udp"
+                    class="form-check-input"
+                    name="allow_udp"
+                    type="checkbox"
+                    value="1"
                 />
                 <label class="form-check-label" for="allow_udp">
                     允许 UDP
@@ -201,12 +201,12 @@
 
             <div class="form-check">
                 <input
-                    class="form-check-input"
-                    type="checkbox"
-                    name="allow_stcp"
-                    value="1"
                     id="allow_stcp"
                     v-model="data.allow_stcp"
+                    class="form-check-input"
+                    name="allow_stcp"
+                    type="checkbox"
+                    value="1"
                 />
                 <label class="form-check-label" for="allow_stcp">
                     允许 STCP
@@ -215,12 +215,12 @@
 
             <div class="form-check">
                 <input
-                    class="form-check-input"
-                    type="checkbox"
-                    name="allow_sudp"
-                    value="1"
                     id="allow_sudp"
                     v-model="data.allow_sudp"
+                    class="form-check-input"
+                    name="allow_sudp"
+                    type="checkbox"
+                    value="1"
                 />
                 <label class="form-check-label" for="allow_sudp">
                     允许 SUDP
@@ -229,12 +229,12 @@
 
             <div class="form-check">
                 <input
-                    class="form-check-input"
-                    type="checkbox"
-                    name="allow_xtcp"
-                    value="1"
                     id="allow_xtcp"
                     v-model="data.allow_xtcp"
+                    class="form-check-input"
+                    name="allow_xtcp"
+                    type="checkbox"
+                    value="1"
                 />
                 <label class="form-check-label" for="allow_xtcp">
                     允许 XTCP
@@ -243,8 +243,8 @@
 
             <div class="col-auto">
                 <button
-                    type="submit"
                     class="btn btn-primary mb-3"
+                    type="submit"
                     @click.prevent="submit"
                 >
                     新建服务器
@@ -255,7 +255,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import {ref} from "vue";
 import http from "../../plugins/http";
 
 const data = ref({

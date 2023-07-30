@@ -8,24 +8,24 @@
 
         <div class="mb-3">
             您可以选择以下常见问题：
-            <a @click="common_domain" class="link">域名白名单</a>
+            <a class="link" @click="common_domain">域名白名单</a>
             &nbsp;
-            <a @click="common_problem" class="link">映射问题</a>
+            <a class="link" @click="common_problem">映射问题</a>
         </div>
         <div class="input-group mb-3">
             <input
+                v-model="title"
                 autofocus
-                type="text"
                 class="form-control"
                 placeholder="简要概述您遇到的问题"
-                v-model="title"
+                type="text"
             />
         </div>
 
-        <div class="input-group" v-if="title">
+        <div v-if="title" class="input-group">
             <textarea
-                class="form-control"
                 v-model="content"
+                class="form-control"
                 placeholder="详细说明您遇到的问题..."
             ></textarea>
         </div>
@@ -37,17 +37,17 @@
                 <template v-for="p in providers">
                     <div class="form-group form-check">
                         <input
-                            type="radio"
+                            :id="'providers_' + p"
+                            v-model.value="provider"
+                            :value="p"
                             class="form-check-input"
                             name="provider"
-                            :id="'providers_' + p"
-                            :value="p"
-                            v-model.value="provider"
+                            type="radio"
                         />
                         <label
-                            v-text="p"
-                            class="form-check-label"
                             :for="'providers_' + p"
+                            class="form-check-label"
+                            v-text="p"
                         ></label>
                     </div>
                 </template>
@@ -58,10 +58,10 @@
 
             <div v-if="content">
                 <button
+                    :disabled="loading"
                     class="btn btn-primary mt-3"
                     @click="submit"
                     v-text="loading ? '请稍后' : '创建工单'"
-                    :disabled="loading"
                 ></button>
             </div>
         </div>
@@ -77,7 +77,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import {ref} from "vue";
 
 import http from "../plugins/http";
 
