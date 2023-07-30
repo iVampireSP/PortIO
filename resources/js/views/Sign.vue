@@ -8,7 +8,7 @@
             <div v-else>
                 <p>完成验证码以签到</p>
                 <vue-recaptcha
-                    sitekey="6Lex40QnAAAAADQcwqLHWquxs23I6nG-HqPk-ZGV"
+                    :sitekey="key"
                     loadRecaptchaScript
                     recaptchaHost="www.recaptcha.net"
                     @verify="sign"
@@ -23,6 +23,8 @@ import { ref } from "vue";
 import { VueRecaptcha } from 'vue-recaptcha';
 
 import http from "../plugins/http";
+
+const key = window.Base.ReCaptcha
 
 const traffic = ref({
     last_sign_at: null,
