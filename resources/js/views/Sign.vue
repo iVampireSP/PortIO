@@ -6,7 +6,13 @@
             <p>当前流量: {{ traffic.traffic }}GB</p>
             <div v-if="traffic.is_signed">今日已签到</div>
             <div v-else>
-                <button class="btn btn-primary" @click="sign">试试手气</button>
+                <p>完成验证码以签到</p>
+                <vue-recaptcha
+                    :sitekey="key"
+                    loadRecaptchaScript
+                    recaptchaHost="www.recaptcha.net"
+                    @verify="sign"
+                />
             </div>
         </div>
     </div>
@@ -14,8 +20,11 @@
 
 <script setup>
 import { ref } from "vue";
+import { VueRecaptcha } from 'vue-recaptcha';
 
 import http from "../plugins/http";
+
+const key = window.Base.ReCaptcha
 
 const traffic = ref({
     last_sign_at: null,
@@ -27,8 +36,10 @@ http.get("user")
         traffic.value.traffic = res.data.traffic;
     })
 
-function sign() {
-    http.post("traffic")
+function sign(captcha_token) {
+    http.post("traffic", {
+        "recaptcha": captcha_token
+    })
         .then((res) => {
             traffic.value = res.data;
 

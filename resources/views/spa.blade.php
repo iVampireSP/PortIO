@@ -18,6 +18,7 @@
         window.Base = {
             SiteName: '{{ config('app.display_name') }}',
             User: @json(auth()->user()),
+            ReCaptcha: '{{ config('captcha.token') }}',
         }
     </script>
 
