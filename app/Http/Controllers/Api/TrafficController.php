@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Support\WHMCS;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
@@ -103,7 +105,7 @@ class TrafficController extends Controller
         ]);
     }
 
-    public function sign()
+    public function sign(Request $request)
     {
         $user = auth()->user();
 
@@ -115,19 +117,38 @@ class TrafficController extends Controller
             return $this->error('您已经签到过了，请明天再来吧。');
         }
 
-        // 随机 config('settings.sign.min') 到 config('settings.sign.max')
-        $traffic = rand(config('settings.sign.min'), config('settings.sign.max'));
-
-        if ($traffic !== -1) {
-            $user->traffic += $traffic;
-            $user->save();
+        $recaptcha = $request->post("recaptcha");
+        $http = new Client;
+        try {
+            $check = $http->post("https://www.recaptcha.net/recaptcha/api/siteverify", [
+                'form_params' => [
+                    "secret" => config("captcha.secret"),
+                    "response" => $recaptcha,
+                ],
+//                'verify' => false,
+            ])->getBody();
+        } catch (GuzzleException $e) {
+            return $this->error("与验证码 API 通信失败");
         }
 
-        Cache::put('traffic_sign:' . $day . '-' . $user->id, true);
+        $check = json_decode($check);
+        if ($check->success) {
+            // 随机 config('settings.sign.min') 到 config('settings.sign.max')
+            $traffic = rand(config('settings.sign.min'), config('settings.sign.max'));
 
-        return $this->success([
-            'traffic' => $traffic,
-            'last_sign_at' => now()->toDateTimeString(),
-        ]);
+            if ($traffic !== -1) {
+                $user->traffic += $traffic;
+                $user->save();
+            }
+
+            Cache::put('traffic_sign:' . $day . '-' . $user->id, true);
+
+            return $this->success([
+                'traffic' => $traffic,
+                'last_sign_at' => now()->toDateTimeString(),
+            ]);
+        } else {
+            return $this->error("验证码校验失败");
+        }
     }
 }
