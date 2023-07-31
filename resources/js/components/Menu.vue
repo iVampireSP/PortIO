@@ -3,10 +3,11 @@
         <template v-for="item in items">
             <li class="nav-item">
                 <router-link
-                    class="nav-link text-auto"
                     :to="{ name: item.route }"
                     active-class="active"
-                    >{{ item.name }}</router-link
+                    class="nav-link text-auto"
+                >{{ item.name }}
+                </router-link
                 >
             </li>
         </template>
@@ -17,9 +18,9 @@
         <li class="nav-item">
             <a
                 class="nav-link text-auto"
-                target="_blank"
                 href="https://wiki.laecloud.com/PortIO"
-                >文档</a
+                target="_blank"
+            >文档</a
             >
         </li>
         <li class="nav-item">
@@ -29,7 +30,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import {ref} from "vue";
 
 const items = ref([
     {

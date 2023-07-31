@@ -4,7 +4,7 @@ import './bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap-icons/font/bootstrap-icons.css";
 
-import { createApp } from "vue";
+import {createApp} from "vue";
 import axios from "axios";
 import VueAxios from "vue-axios";
 

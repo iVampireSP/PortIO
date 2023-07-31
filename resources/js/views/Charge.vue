@@ -10,11 +10,11 @@
         </p>
         <div class="input-group mb-3">
             <input
+                v-model="amount"
                 autofocus
-                type="number"
                 class="form-control"
                 placeholder="输入您要的流量 (单位: GB)"
-                v-model="amount"
+                type="number"
             />
             <div class="input-group-append">
                 <span class="input-group-text">GB</span>
@@ -30,18 +30,18 @@
                 <template v-for="p in providers">
                     <div class="form-group form-check">
                         <input
-                            type="radio"
+                            :id="'providers_' + p"
+                            v-model.value="provider"
+                            :value="p"
                             class="form-check-input"
                             name="provider"
-                            :id="'providers_' + p"
-                            :value="p"
-                            v-model.value="provider"
+                            type="radio"
                             @change="getPayments"
                         />
                         <label
-                            v-text="p"
-                            class="form-check-label"
                             :for="'providers_' + p"
+                            class="form-check-label"
+                            v-text="p"
                         ></label>
                     </div>
                 </template>
@@ -56,17 +56,17 @@
                 <template v-for="py in payments">
                     <div class="form-group form-check">
                         <input
-                            type="radio"
-                            class="form-check-input"
-                            name="payment"
                             :id="'payments_' + py.name"
                             v-model="payment"
                             :value="py.name"
+                            class="form-check-input"
+                            name="payment"
+                            type="radio"
                         />
                         <label
-                            v-text="py.title"
-                            class="form-check-label"
                             :for="'payments_' + py.name"
+                            class="form-check-label"
+                            v-text="py.title"
                         ></label>
                     </div>
                 </template>
@@ -74,10 +74,10 @@
 
             <div v-if="payment">
                 <button
+                    :disabled="loading"
                     class="btn btn-primary mt-3"
                     @click="pay"
                     v-text="loading ? '请稍后' : '立即支付'"
-                    :disabled="loading"
                 ></button>
             </div>
         </div>
@@ -93,7 +93,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import {ref} from "vue";
 
 import http from "../plugins/http";
 

@@ -58,7 +58,7 @@ instance.interceptors.response.use(
             //
             // }
         } else if (error.response.status === 404) {
-            router.push({ name: "index" });
+            router.push({name: "index"});
         } else {
             if (data.length !== 0) {
                 alert(data);

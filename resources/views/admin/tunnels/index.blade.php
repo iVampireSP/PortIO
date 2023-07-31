@@ -26,7 +26,7 @@
         总计: {{ $count }}
     </div>
 
-    <table class="mt-3 table table-hover text-center table-bordered"  style="vertical-align: middle">
+    <table class="mt-3 table table-hover text-center table-bordered" style="vertical-align: middle">
         <thead>
         <tr>
             <th>ID</th>

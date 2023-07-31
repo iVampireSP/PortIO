@@ -10,15 +10,15 @@
     <div>
         <h2>配置文件</h2>
         <pre
-            >{{ tunnel.config.server }}
+        >{{ tunnel.config.server }}
 
 {{ tunnel.config.client }}
         </pre>
     </div>
 
-     <!-- <div v-if="tunnel.tunnel">
+    <!-- <div v-if="tunnel.tunnel">
 
-     </div> -->
+    </div> -->
 
     <div v-if="tunnel.run_id" class="mb-3">
         <h2>强制下线</h2>
@@ -34,11 +34,12 @@
 </template>
 
 <script setup>
-import { onMounted, onUnmounted, ref } from "vue";
+import {onMounted, onUnmounted, ref} from "vue";
 import http from "../../plugins/http";
 import router from "../../plugins/router";
 import * as echarts from "echarts";
 import Humanize from 'humanize-plus'
+
 const showChart = ref(false);
 let chart = undefined;
 
@@ -148,7 +149,7 @@ function deleteTunnel() {
         http.delete(`/tunnels/${tunnel_id}`).then(() => {
             alert("删除成功");
 
-            router.push({ name: "tunnels" });
+            router.push({name: "tunnels"});
         });
     }
 }
@@ -188,10 +189,10 @@ function refresh() {
             for (let i = 0; i < 7; i++) {
                 dates.push(
                     now.getFullYear() +
-                        "-" +
-                        (now.getMonth() + 1) +
-                        "-" +
-                        now.getDate()
+                    "-" +
+                    (now.getMonth() + 1) +
+                    "-" +
+                    now.getDate()
                 );
                 now = new Date(
                     now.getFullYear(),

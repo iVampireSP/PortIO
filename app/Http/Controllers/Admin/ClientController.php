@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Client;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use App\Models\Client;
 use Illuminate\View\View;
 
 class ClientController extends Controller
@@ -20,11 +20,6 @@ class ClientController extends Controller
         $clients = Client::all();
         $count = $clients->count();
         return view('admin.clients.index', ['clients' => $clients, 'count' => $count]);
-    }
-
-    public function create(Request $request): View
-    {
-        return view('admin.clients.create');
     }
 
     public function edit(Client $client): View
@@ -42,6 +37,11 @@ class ClientController extends Controller
         $request_data = $request->toArray();
         Client::create($request_data);
         return redirect()->route('admin.clients.index')->with('success', '创建成功');
+    }
+
+    public function create(Request $request): View
+    {
+        return view('admin.clients.create');
     }
 
     public function update(Request $request, Client $client)

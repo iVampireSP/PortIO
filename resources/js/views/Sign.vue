@@ -9,6 +9,7 @@
                 <p>完成验证码以签到</p>
                 <vue-recaptcha
                     :sitekey="key"
+                    :theme="theme"
                     loadRecaptchaScript
                     recaptchaHost="www.recaptcha.net"
                     @verify="sign"
@@ -19,8 +20,8 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { VueRecaptcha } from 'vue-recaptcha';
+import {ref} from "vue";
+import {VueRecaptcha} from 'vue-recaptcha';
 
 import http from "../plugins/http";
 
@@ -30,6 +31,14 @@ const traffic = ref({
     last_sign_at: null,
     traffic: 0,
 });
+
+const theme = ref("")
+
+if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    theme.value = "dark"
+} else {
+    theme.value = "light"
+}
 
 http.get("user")
     .then((res) => {

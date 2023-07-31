@@ -4,12 +4,12 @@
 
     <h5>好的名称是好的开始。</h5>
     <div class="form-floating mb-3">
-        <input v-model="data.name" type="text" class="form-control" id="tunnelName" placeholder="起一个易于辨别的名字">
+        <input id="tunnelName" v-model="data.name" class="form-control" placeholder="起一个易于辨别的名字" type="text">
         <label for="tunnelName">隧道名称</label>
     </div>
 
     <div class="form-floating mb-3">
-        <select v-model="data.server_id" class="form-select" id="serverSelect">
+        <select id="serverSelect" v-model="data.server_id" class="form-select">
             <option v-for="server in servers" :value="server.id">{{ server.name }}</option>
         </select>
         <label for="serverSelect">服务器</label>
@@ -17,43 +17,44 @@
 
     <div v-if="server">
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" id="protocolHTTP" value="http" :disabled="!server.allow_http"
-                   v-model="data.protocol">
+            <input id="protocolHTTP" v-model="data.protocol" :disabled="!server.allow_http" class="form-check-input" type="radio"
+                   value="http">
             <label class="form-check-label" for="protocolHTTP">HTTP</label>
         </div>
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" id="protocolHTTPS" value="https" :disabled="!server.allow_https"
-                   v-model="data.protocol">
+            <input id="protocolHTTPS" v-model="data.protocol" :disabled="!server.allow_https" class="form-check-input"
+                   type="radio"
+                   value="https">
             <label class="form-check-label" for="protocolHTTPS">HTTPS</label>
         </div>
 
 
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" id="protocolTCP" value="tcp" :disabled="!server.allow_tcp"
-                   v-model="data.protocol">
+            <input id="protocolTCP" v-model="data.protocol" :disabled="!server.allow_tcp" class="form-check-input" type="radio"
+                   value="tcp">
             <label class="form-check-label" for="protocolTCP">TCP</label>
         </div>
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" id="protocolUDP" value="udp" :disabled="!server.allow_udp"
-                   v-model="data.protocol">
+            <input id="protocolUDP" v-model="data.protocol" :disabled="!server.allow_udp" class="form-check-input" type="radio"
+                   value="udp">
             <label class="form-check-label" for="protocolUDP">UDP</label>
         </div>
 
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" id="protocolSTCP" value="stcp" :disabled="!server.allow_stcp"
-                   v-model="data.protocol">
+            <input id="protocolSTCP" v-model="data.protocol" :disabled="!server.allow_stcp" class="form-check-input" type="radio"
+                   value="stcp">
             <label class="form-check-label" for="protocolSTCP">STCP</label>
         </div>
 
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" id="protocolSUDP" value="sudp" :disabled="!server.allow_sudp"
-                   v-model="data.protocol">
+            <input id="protocolSUDP" v-model="data.protocol" :disabled="!server.allow_sudp" class="form-check-input" type="radio"
+                   value="sudp">
             <label class="form-check-label" for="protocolSUDP">SUDP</label>
         </div>
 
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" id="protocolXTCP" value="xtcp" :disabled="!server.allow_xtcp"
-                   v-model="data.protocol">
+            <input id="protocolXTCP" v-model="data.protocol" :disabled="!server.allow_xtcp" class="form-check-input" type="radio"
+                   value="xtcp">
             <label class="form-check-label" for="protocolXTCP">XTCP</label>
         </div>
 
@@ -61,8 +62,8 @@
 
     <h5 class="mt-3">本地服务的地址</h5>
     <div class="form-floating mb-3">
-        <input v-model="data.local_address" type="text" class="form-control" id="localAddress"
-               placeholder="比如 127.0.0.1:80">
+        <input id="localAddress" v-model="data.local_address" class="form-control" placeholder="比如 127.0.0.1:80"
+               type="text">
         <label for="localAddress">本地地址</label>
     </div>
 
@@ -70,8 +71,8 @@
     <div v-if="data.protocol === 'http'|| data.protocol === 'https'">
         <h5>自定义域名</h5>
         <div class="form-floating mb-3">
-            <input v-model="data.custom_domain" type="text" class="form-control" id="customDomain"
-                   placeholder="比如 example.com">
+            <input id="customDomain" v-model="data.custom_domain" class="form-control" placeholder="比如 example.com"
+                   type="text">
             <label for="customDomain">自定义域名</label>
         </div>
     </div>
@@ -79,8 +80,8 @@
     <div v-if="data.protocol === 'tcp' || data.protocol === 'udp'">
         <h5>外部端口</h5>
         <div class="form-floating mb-3">
-            <input v-model="data.remote_port" type="text" class="form-control" id="remotePort"
-                   placeholder="比如 25565">
+            <input id="remotePort" v-model="data.remote_port" class="form-control" placeholder="比如 25565"
+                   type="text">
             <label for="remotePort">外部端口</label>
         </div>
     </div>
@@ -88,8 +89,8 @@
     <div v-if="data.protocol === 'stcp' || data.protocol === 'sudp' || data.protocol === 'xtcp' ">
         <h5>访问密钥</h5>
         <div class="form-floating mb-3">
-            <input v-model="data.sk" type="text" class="form-control" id="sk"
-                   placeholder="比如 25565">
+            <input id="sk" v-model="data.sk" class="form-control" placeholder="比如 25565"
+                   type="text">
             <label for="sk">访问密钥</label>
         </div>
 

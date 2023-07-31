@@ -13,7 +13,7 @@
                 query: {
                     server_id: server.id
                 }
-            }" class="list-group-item list-group-item-action" aria-current="true">
+            }" aria-current="true" class="list-group-item list-group-item-action">
                     <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1">{{ server.name }}</h5>
                         <small>
@@ -72,7 +72,6 @@ const servers = ref([{
 http.get('servers').then((res) => {
     servers.value = res.data
 })
-
 
 
 const isAdmin = () => {
