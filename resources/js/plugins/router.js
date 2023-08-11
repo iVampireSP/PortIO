@@ -36,6 +36,14 @@ const routes = [
         },
     },
     {
+        path: "/status",
+        name: "status",
+        component: () => import("../views/Status.vue"),
+        meta: {
+            title: "节点状态",
+        },
+    },
+    {
         path: "/downloads",
         name: "downloads",
         component: () => import("../views/Downloads.vue"),

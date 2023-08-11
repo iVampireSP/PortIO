@@ -54,6 +54,10 @@ const items = ref([
         route: "charge",
     },
     {
+        name: "节点状态",
+        route: "status",
+    },
+    {
         name: "发工单",
         route: "ticket",
     },
