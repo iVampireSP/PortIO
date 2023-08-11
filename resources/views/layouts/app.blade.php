@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
-    <title>{{ config('app.name', 'LAE') }} 后台</title>
+    <title>{{ config('app.display_name', 'LAE') }} 后台</title>
 
     <link rel="stylesheet" href="/bs/bootstrap.min.css">
     <script src="/bs/bootstrap.bundle.min.js"></script>
