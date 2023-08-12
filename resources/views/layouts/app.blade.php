@@ -16,7 +16,7 @@
 
 <body>
 <div id="top">
-    @auth
+    @auth('admin')
         <nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ route('admin.index') }}">{{ config('app.display_name') }} 后台</a>
@@ -74,33 +74,32 @@
 </div>
 {{-- display error --}}
 
-{{-- if has success --}}
-@if (session('success'))
-    <p style="color: green">
-        {{ session('success') }}
-    </p>
-@endif
+<div class="container mt-4 mb-3">
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
 
-@if (session('error'))
-    <p style="color: red">
-        {{ session('error') }}
-    </p>
-@endif
-
-@if ($errors->any())
-    <div>
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li style="color: red;">{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-
-<div class="container mt-4">
-    {{-- 摆烂 --}}
-    <!-- Page Content -->
-    <main>
+    @if (session('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session('error') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+    @if ($errors->any())
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+    {{-- Page Content --}}
+    <main @if ($errors->any() || session('success' || session('error')))class="mt-3"@endif>
         {{ $slot }}
     </main>
 </div>

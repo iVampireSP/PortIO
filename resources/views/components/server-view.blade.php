@@ -1,36 +1,82 @@
-<hr/>
 <div>
-    <a href="{{ $url }}" class="list-group-item list-group-item-action">
-        {{-- <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1 text-success">{{ $server->name }}</h5>
-        <small class="text-muted">{{ $server->updated_at->diffForHumans() }}</small>
-    </div> --}}
-        {{-- <p class="mb-1"></p> --}}
-        <h4>{{ $server->name }}</h4>
-        {{ $server->updated_at->diffForHumans() }}
+    <a href="{{ $url }}" class="list-group-item list-group-item-action d-flex gap-3 py-3">
+        <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+                <h4 class="mb-2">{{ $server->name }}</h4>
+                <p class="mb-0">
+                    @if ($server->status == "down")
+                        <span class="text-danger">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                 class="bi bi-x-circle" viewBox="0 0 16 16">
+                              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                              <path
+                                  d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                            </svg>
+                            服务器状态 down
+                        </span>
+                    @else
+                        <span class="text-success">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                 class="bi bi-check-circle" viewBox="0 0 16 16">
+                              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                              <path
+                                  d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                            </svg>
+                            服务器状态 up
+                        </span>
+                    @endif
+                </p>
+            </div>
+            <small class="text-secondary">
+                <svg xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 4px" width="16" height="16"
+                     fill="currentColor" class="bi bi-hdd-rack" viewBox="0 0 16 16">
+                    <path
+                        d="M4.5 5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1zM3 4.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm2 7a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm-2.5.5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+                    <path
+                        d="M2 2a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h1v2H2a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1a2 2 0 0 0-2-2h-1V7h1a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2zm13 2v1a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1zm0 7v1a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1zm-3-4v2H4V7h8z"/>
+                </svg>
+                服务器地址: {{ $server->server_address }}
+                <br/>
+                <svg xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 4px" width="16" height="16"
+                     fill="currentColor" class="bi bi-globe" viewBox="0 0 16 16">
+                    <path
+                        d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855A7.97 7.97 0 0 0 5.145 4H7.5V1.077zM4.09 4a9.267 9.267 0 0 1 .64-1.539 6.7 6.7 0 0 1 .597-.933A7.025 7.025 0 0 0 2.255 4H4.09zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a6.958 6.958 0 0 0-.656 2.5h2.49zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5H4.847zM8.5 5v2.5h2.99a12.495 12.495 0 0 0-.337-2.5H8.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5H4.51zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5H8.5zM5.145 12c.138.386.295.744.468 1.068.552 1.035 1.218 1.65 1.887 1.855V12H5.145zm.182 2.472a6.696 6.696 0 0 1-.597-.933A9.268 9.268 0 0 1 4.09 12H2.255a7.024 7.024 0 0 0 3.072 2.472zM3.82 11a13.652 13.652 0 0 1-.312-2.5h-2.49c.062.89.291 1.733.656 2.5H3.82zm6.853 3.472A7.024 7.024 0 0 0 13.745 12H11.91a9.27 9.27 0 0 1-.64 1.539 6.688 6.688 0 0 1-.597.933zM8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855.173-.324.33-.682.468-1.068H8.5zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.65 13.65 0 0 1-.312 2.5zm2.802-3.5a6.959 6.959 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5h2.49zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7.024 7.024 0 0 0-3.072-2.472c.218.284.418.598.597.933zM10.855 4a7.966 7.966 0 0 0-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4h2.355z"/>
+                </svg>
+                支持的协议:
+                {{ $server->allow_http ? 'HTTP' : ' ' }}
+                {{ $server->allow_https ? 'HTTPS' : ' ' }}
+                {{ $server->allow_tcp ? 'TCP' : ' ' }}
+                {{ $server->allow_udp ? 'UDP' : ' ' }}
+                {{ $server->allow_STCP ? 'STCP' : ' ' }}
+                <br/>
+                @if ($server->is_china_mainland)
+                    <svg xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 4px" width="16" height="16"
+                         fill="currentColor" class="bi bi-globe-asia-australia" viewBox="0 0 16 16">
+                        <path
+                            d="m10.495 6.92 1.278-.619a.483.483 0 0 0 .126-.782c-.252-.244-.682-.139-.932.107-.23.226-.513.373-.816.53l-.102.054c-.338.178-.264.626.1.736a.476.476 0 0 0 .346-.027ZM7.741 9.808V9.78a.413.413 0 1 1 .783.183l-.22.443a.602.602 0 0 1-.12.167l-.193.185a.36.36 0 1 1-.5-.516l.112-.108a.453.453 0 0 0 .138-.326ZM5.672 12.5l.482.233A.386.386 0 1 0 6.32 12h-.416a.702.702 0 0 1-.419-.139l-.277-.206a.302.302 0 1 0-.298.52l.761.325Z"/>
+                        <path
+                            d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0ZM1.612 10.867l.756-1.288a1 1 0 0 1 1.545-.225l1.074 1.005a.986.986 0 0 0 1.36-.011l.038-.037a.882.882 0 0 0 .26-.755c-.075-.548.37-1.033.92-1.099.728-.086 1.587-.324 1.728-.957.086-.386-.114-.83-.361-1.2-.207-.312 0-.8.374-.8.123 0 .24-.055.318-.15l.393-.474c.196-.237.491-.368.797-.403.554-.064 1.407-.277 1.583-.973.098-.391-.192-.634-.484-.88-.254-.212-.51-.426-.515-.741a6.998 6.998 0 0 1 3.425 7.692 1.015 1.015 0 0 0-.087-.063l-.316-.204a1 1 0 0 0-.977-.06l-.169.082a1 1 0 0 1-.741.051l-1.021-.329A1 1 0 0 0 11.205 9h-.165a1 1 0 0 0-.945.674l-.172.499a1 1 0 0 1-.404.514l-.802.518a1 1 0 0 0-.458.84v.455a1 1 0 0 0 1 1h.257a1 1 0 0 1 .542.16l.762.49a.998.998 0 0 0 .283.126 7.001 7.001 0 0 1-9.49-3.409Z"/>
+                    </svg>
+                @else
+                    <svg xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 4px" width="16" height="16"
+                         fill="currentColor" class="bi bi-globe-americas" viewBox="0 0 16 16">
+                        <path
+                            d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0ZM2.04 4.326c.325 1.329 2.532 2.54 3.717 3.19.48.263.793.434.743.484-.08.08-.162.158-.242.234-.416.396-.787.749-.758 1.266.035.634.618.824 1.214 1.017.577.188 1.168.38 1.286.983.082.417-.075.988-.22 1.52-.215.782-.406 1.48.22 1.48 1.5-.5 3.798-3.186 4-5 .138-1.243-2-2-3.5-2.5-.478-.16-.755.081-.99.284-.172.15-.322.279-.51.216-.445-.148-2.5-2-1.5-2.5.78-.39.952-.171 1.227.182.078.099.163.208.273.318.609.304.662-.132.723-.633.039-.322.081-.671.277-.867.434-.434 1.265-.791 2.028-1.12.712-.306 1.365-.587 1.579-.88A7 7 0 1 1 2.04 4.327Z"/>
+                    </svg>
+                @endif
+                服务器位于
+                @if ($server->is_china_mainland)
+                    <span class="text-success">
+                中国大陆
+            </span>
+                @else
+                    <span class="text-danger">
+                境外
+            </span>
+                @endif
+            </small>
+            <small class="opacity-75 text-nowrap">{{ $server->updated_at->diffForHumans() }}</small>
+        </div>
     </a>
-
-    <p>
-        @if ($server->status == "down")
-            <span class="text-danger">服务器状态 down</span>
-        @else
-            <span class="text-success">服务器状态 up</span>
-        @endif
-    </p>
-
-    <small class="text-muted">
-        服务器地址: {{ $server->server_address }}, 支持的协议:
-        {{ $server->allow_http ? 'HTTP' : ' ' }}
-        {{ $server->allow_https ? 'HTTPS' : ' ' }}
-        {{ $server->allow_tcp ? 'TCP' : ' ' }}
-        {{ $server->allow_udp ? 'UDP' : ' ' }}
-        {{ $server->allow_STCP ? 'STCP' : ' ' }}。
-        服务器位于
-        @if ($server->is_china_mainland)
-            <span class="text-success">中国大陆</span>
-        @else
-            <span class="text-danger">境外</span>
-        @endif
-    </small>
 </div>
 <hr/>

@@ -1,7 +1,7 @@
 <x-app-layout>
 
     <a href="{{ route('admin.servers.create') }}">添加 Frps 服务器</a>
-    <div class="mt-3">
+    <div class="mt-3 list-group w-auto">
         @foreach ($servers as $server)
             <x-Server-View :server="$server" :url="route('admin.servers.edit', $server->id)"/>
         @endforeach

@@ -153,7 +153,7 @@
 
                 <div class="form-check mt-3">
                     <input class="form-check-input" type="checkbox" name="is_china_mainland" value="1"
-                           id="is_china_mainland">
+                           id="is_china_mainland" @if ($server->is_china_mainland) checked @endif>
                     <label class="form-check-label" for="is_china_mainland">
                         服务器是否位于中国大陆
                     </label>

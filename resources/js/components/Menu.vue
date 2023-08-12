@@ -6,9 +6,9 @@
                     :to="{ name: item.route }"
                     active-class="active"
                     class="nav-link text-auto"
-                >{{ item.name }}
-                </router-link
                 >
+                    {{ item.name }}
+                </router-link>
             </li>
         </template>
     </ul>
@@ -20,8 +20,7 @@
                 class="nav-link text-auto"
                 href="https://wiki.laecloud.com/PortIO"
                 target="_blank"
-            >文档</a
-            >
+            >文档</a>
         </li>
         <li class="nav-item">
             <a class="nav-link text-auto" href="/auth/logout">退出登录</a>
