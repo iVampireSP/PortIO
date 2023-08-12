@@ -13,7 +13,7 @@ class Server extends Model
         'dashboard_port',
         'key'
     ];
-    
+
     protected $fillable = [
         'name',
         'key',
