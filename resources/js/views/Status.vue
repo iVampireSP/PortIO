@@ -41,9 +41,14 @@ import {ref} from "vue";
 
 const servers = ref([])
 
-http.get("servers").then(res => {
-    servers.value = res.data
-})
+if (localStorage.getItem("status") !== null) {
+    servers.value = JSON.parse(localStorage.getItem("status"))
+} else {
+    http.get("servers").then(res => {
+        servers.value = res.data
+        localStorage.setItem("status", servers.value.toString())
+    })
+}
 
 </script>
 
