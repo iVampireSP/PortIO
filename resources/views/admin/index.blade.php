@@ -1,10 +1,11 @@
 <x-app-layout>
     @if (count($servers) > 0)
         <h3>不在线或维护中的服务器</h3>
-
-        @foreach ($servers as $server)
-            <x-Server-View :server="$server" :url="route('admin.servers.edit', $server->id)"/>
-        @endforeach
+        <div class="mt-3 list-group w-auto">
+            @foreach ($servers as $server)
+                <x-Server-View :server="$server" :url="route('admin.servers.edit', $server->id)"/>
+            @endforeach
+        </div>
     @else
         <div class="text-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor"

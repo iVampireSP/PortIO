@@ -83,8 +83,7 @@
                         <div class="hero-form field field-grouped">
 
                             <div class="control">
-                                <a class="button button-primary button-block" href="/auth/login">开始使用</a
-                                >
+                                <a class="button button-primary button-block" href="/auth/login">开始使用</a>
                             </div>
                         </div>
                     </div>
@@ -425,7 +424,7 @@
                                     跨平台支持
                                 </h4>
                                 <p class="text-sm">
-                                    木韩内网穿透支持多种操作系统和设备
+                                    木韩内网穿透支持多种操作系统和设备。
                                     例如 Windows、Linux、Mac、Android 等。无论是电脑、
                                     手机或者其他设备，都可以轻松使用木韩内网穿透进行内网穿透。
                                 </p>
@@ -474,7 +473,7 @@
                                 <p class="text-sm">
                                     我们目前支持市面上所有系统环境，
                                     旗下也有众多开发者自主开发的客户端.
-                                    用户可以自行选择客户端，兼容官方frp方便用户在openwrt等环境中使用。
+                                    用户可以自行选择客户端，兼容官方 Frp 方便用户在 OpenWrt 等环境中使用。
                                 </p>
                             </div>
                         </div>
@@ -554,8 +553,8 @@
                                     </div>
                                     <div class="testimonial-body">
                                         <p class="mb-0">
-                                            简单易用的客户端，非常的容易配置
-                                            遇到不懂的站长也提供支持，非常的不错值得推荐
+                                            简单易用的客户端，非常的容易配置，
+                                            遇到不懂的也提供支持，非常不错，值得推荐
                                         </p>
                                     </div>
                                 </div>
@@ -574,9 +573,9 @@
                                     </div>
                                     <div class="testimonial-body">
                                         <p class="mb-0">
-                                            节点众多，高防节点值得推荐再也不用担心被打掉线了
+                                            节点众多，高防节点值得推荐，再也不用担心被打掉线了，
                                             无限隧道是真的不错，对比市面上的限制隧道的我是真心推荐使用木韩
-                                            如果流量不够用了1分钱1G也挺便宜的相当于做公益了值得推荐
+                                            如果流量不够用了1分钱1G也挺便宜的，相当于做公益了，值得推荐
                                         </p>
                                     </div>
                                 </div>
@@ -637,12 +636,14 @@
                     </a>
                 </div>
                 <ul class="footer-links list-reset">
-                    <a style="margin-left: 5px" href="#">服务条款</a><a style="margin-left: 5px" href="#">联系我们</a>
+                    <a style="margin-left: 5px" href="#">服务条款</a>
+                    <a style="margin-left: 5px" href="https://www.laecloud.com/contact-us/">联系我们</a>
                 </ul>
                 <div class="footer-links">
-                    <a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备2021166927号</a> &nbsp;&nbsp;| 本站已运行&nbsp;[&nbsp;<SPAN
-                        id=span_dt_dt style="color: #9EA0A1;"></SPAN>
-                    <SCRIPT language=javascript>function show_date_time() {
+                    <a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备2021166927号</a> &nbsp;&nbsp;| 本站已运行&nbsp;[&nbsp;<span
+                        id=span_dt_dt style="color: #9EA0A1;"></span>
+                    <script type="text/javascript">
+                        function show_date_time() {
                             window.setTimeout("show_date_time()", 1000);
                             BirthDay = new Date("5/21/2021 00:00:00");
                             today = new Date();
@@ -657,14 +658,13 @@
                             e_minsold = (e_hrsold - hrsold) * 60;
                             minsold = Math.floor((e_hrsold - hrsold) * 60);
                             seconds = Math.floor((e_minsold - minsold) * 60);
-                            span_dt_dt.innerHTML = '<font style=color:#F4F8F4>' + daysold + '</font> 天 <font style=color:#F4F8F4>' + hrsold + '</font> 时 <font style=color:#F4F8F4>' + minsold + '</font> 分 <font style=color:#F4F8F4>' + seconds + '</font> 秒';
+                            span_dt_dt.innerHTML = '<span style=color:#F4F8F4>' + daysold + '</span> 天 <span style=color:#F4F8F4>' + hrsold + '</span> 时 <span style=color:#F4F8F4>' + minsold + '</span> 分 <span style=color:#F4F8F4>' + seconds + '</span> 秒';
                         }
 
-                        show_date_time();</script>
+                        show_date_time();
+                    </script>
                     &nbsp;]
                 </div>
-                </li>
-                </ul>
                 <ul class="footer-social-links list-reset">
 
                 </ul>
