@@ -29,7 +29,7 @@ class IndexController extends Controller
 //            return redirect()->intended('admin.index');
             return redirect()->route('admin.index');
         } else {
-            // if fail, redirect to login with error message
+            // if failed, redirect to login page with error message
             return redirect()->back()->withErrors(['message' => '用户名或密码错误'])->withInput();
         }
     }
