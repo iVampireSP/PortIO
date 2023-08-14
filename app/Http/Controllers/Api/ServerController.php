@@ -4,8 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Server;
-use App\Support\Frp;
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -17,17 +15,6 @@ class ServerController extends Controller
     public function index()
     {
         $servers = Server::all();
-        $servers->toJson();
-
-        foreach ($servers as $server) {
-            try {
-                $serverInfo = (object) (new Frp($server))->serverInfo();
-                $server["traffic_in"] = $serverInfo->total_traffic_in;
-                $server["traffic_out"] = $serverInfo->total_traffic_out;
-                $server["connections"] = $serverInfo->cur_conns;
-            } catch (Exception) {
-            }
-        }
 
         return $this->success($servers);
     }

@@ -1,6 +1,6 @@
 {
-  "_http-841513cf.js": {
-    "file": "assets/http-841513cf.js",
+  "_http-4cf683c0.js": {
+    "file": "assets/http-4cf683c0.js",
     "imports": [
       "resources/js/app.js"
     ]
@@ -41,51 +41,51 @@
       "resources/js/views/Charge.vue",
       "resources/js/views/Ticket.vue"
     ],
-    "file": "assets/app-341a63c8.js",
+    "file": "assets/app-6d22deb1.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   },
   "resources/js/views/Charge.vue": {
-    "file": "assets/Charge-6d455161.js",
+    "file": "assets/Charge-534c87a2.js",
     "imports": [
       "resources/js/app.js",
-      "_http-841513cf.js"
+      "_http-4cf683c0.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/views/Charge.vue"
   },
   "resources/js/views/Downloads.vue": {
-    "file": "assets/Downloads-c8bd0b62.js",
+    "file": "assets/Downloads-325608f0.js",
     "imports": [
-      "_http-841513cf.js",
+      "_http-4cf683c0.js",
       "resources/js/app.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/views/Downloads.vue"
   },
   "resources/js/views/Index.vue": {
-    "file": "assets/Index-b94d45ed.js",
+    "file": "assets/Index-58fb113e.js",
     "imports": [
-      "_http-841513cf.js",
+      "_http-4cf683c0.js",
       "resources/js/app.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/views/Index.vue"
   },
   "resources/js/views/Sign.vue": {
-    "file": "assets/Sign-85c16dbf.js",
+    "file": "assets/Sign-1ad8920f.js",
     "imports": [
       "resources/js/app.js",
-      "_http-841513cf.js"
+      "_http-4cf683c0.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/views/Sign.vue"
   },
   "resources/js/views/Status.vue": {
-    "file": "assets/Status-95dbc889.js",
+    "file": "assets/Status-762527de.js",
     "imports": [
       "resources/js/app.js",
-      "_http-841513cf.js"
+      "_http-4cf683c0.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/views/Status.vue"
@@ -98,36 +98,36 @@
     "css": [
       "assets/Ticket-ce48f17d.css"
     ],
-    "file": "assets/Ticket-ebdef3d5.js",
+    "file": "assets/Ticket-b5db8b15.js",
     "imports": [
       "resources/js/app.js",
-      "_http-841513cf.js"
+      "_http-4cf683c0.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/views/Ticket.vue"
   },
   "resources/js/views/Tunnels/Create.vue": {
-    "file": "assets/Create-029a6d0b.js",
+    "file": "assets/Create-0f7ac30b.js",
     "imports": [
       "resources/js/app.js",
-      "_http-841513cf.js"
+      "_http-4cf683c0.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/views/Tunnels/Create.vue"
   },
   "resources/js/views/Tunnels/Index.vue": {
-    "file": "assets/Index-b922a45d.js",
+    "file": "assets/Index-d744b146.js",
     "imports": [
-      "_http-841513cf.js",
+      "_http-4cf683c0.js",
       "resources/js/app.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/views/Tunnels/Index.vue"
   },
   "resources/js/views/Tunnels/Show.vue": {
-    "file": "assets/Show-6f31d14d.js",
+    "file": "assets/Show-2b11b2a2.js",
     "imports": [
-      "_http-841513cf.js",
+      "_http-4cf683c0.js",
       "resources/js/app.js"
     ],
     "isDynamicEntry": true,

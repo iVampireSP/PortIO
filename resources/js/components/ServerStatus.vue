@@ -1,7 +1,6 @@
 <template>
     <span v-if="status === 'up'"
           class="text-success">
-
             正常
     </span>
     <span v-else-if="status === 'down'"

@@ -297,18 +297,18 @@
     <textarea readonly class="form-control mb-3" rows="20" cols="80">[common]
 bind_port = {{ $server->server_port }}
 bind_udp_port = {{ $server->server_port }}
-        @if ($server->server_port + 1 > 65535)
-            kcp_bind_port = {{ $server->server_port - 1 }}
-        @else
-            kcp_bind_port = {{ $server->server_port + 1 }}
-        @endif
+@if ($server->server_port + 1 > 65535)
+kcp_bind_port = {{ $server->server_port - 1 }}
+@else
+kcp_bind_port = {{ $server->server_port + 1 }}
+@endif
 token = {{ $server->token }}
-        @if ($server->allow_http)
-            vhost_http_port = 80
-        @endif
-        @if ($server->allow_https)
-            vhost_https_port = 443
-        @endif
+@if ($server->allow_http)
+vhost_http_port = 80
+@endif
+@if ($server->allow_https)
+vhost_https_port = 443
+@endif
 dashboard_port = {{ $server->dashboard_port }}
 dashboard_user = {{ $server->dashboard_user }}
 dashboard_pwd = {{ $server->dashboard_password }}

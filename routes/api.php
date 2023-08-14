@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\ServerController;
@@ -10,9 +9,16 @@ use App\Http\Controllers\Api\TicketController;
 use App\Http\Controllers\Api\TrafficController;
 use App\Http\Controllers\Application\UserController as ApplicationUserController;
 use App\Http\Controllers\Api\ClientController;
+use App\Http\Controllers\Review\ReviewController;
 
 Route::prefix('tunnel')->name('api.tunnel.')->group(function () {
     Route::post('/handler/{key}', [PortManagerController::class, 'handler'])->name('handler');
+});
+
+Route::prefix('review')->group(function () {
+    Route::resource('/tunnels', ReviewController::class)->only([
+        'index', 'update', 'destroy'
+    ]);
 });
 
 
