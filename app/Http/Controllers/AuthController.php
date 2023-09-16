@@ -60,7 +60,7 @@ class AuthController extends Controller
                     'Accept' => 'application/json',
                     'Authorization' => 'Bearer ' . $authorize->access_token,
                 ],
-//                'verify' => false
+//                'verify' => false,
             ])->getBody();
         } catch (GuzzleException $e) {
         }
