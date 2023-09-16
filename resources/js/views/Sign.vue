@@ -16,6 +16,33 @@
                 />
             </div>
         </div>
+
+        <button
+            type="button"
+            class="btn btn-primary"
+            style="display: none"
+            id="signinButton"
+            data-bs-toggle="modal"
+            data-bs-target="#signinModal">
+        </button>
+
+
+        <div class="modal fade" id="signinModal" tabindex="-1" aria-labelledby="signinModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="signinModalLabel">签到</h1>
+                    </div>
+                    <div class="modal-body">
+                        签到成功！{{ content }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">确定</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </template>
 
@@ -26,6 +53,7 @@ import {VueRecaptcha} from 'vue-recaptcha';
 import http from "../plugins/http";
 
 const key = window.Base.ReCaptcha
+const content = ref("")
 
 const traffic = ref({
     last_sign_at: null,
@@ -52,13 +80,15 @@ function sign(captcha_token) {
         .then((res) => {
             traffic.value = res.data;
 
-            let content = `获得了 ${res.data.traffic} GB 流量！`;
+            content.value = `获得了 ${res.data.traffic} GB 流量！`;
 
             if (res.data.traffic === 0) {
-                content = "没有获得流量～";
+                content.value = "没有获得流量～";
             }
 
-            alert(content);
+            document.querySelector("#signinButton").click()
+
+            // alert(content);
         })
         .finally(() => {
             http.get("user")
