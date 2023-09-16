@@ -14,6 +14,7 @@
         </select>
         <label for="serverSelect">服务器</label>
     </div>
+    <div class="text-muted mb-3">端口范围 {{ server.min_port }}-{{ server.max_port }}</div>
 
     <div v-if="server">
         <div class="form-check form-check-inline">
@@ -79,10 +80,13 @@
 
     <div v-if="data.protocol === 'tcp' || data.protocol === 'udp'">
         <h5>外部端口</h5>
-        <div class="form-floating mb-3">
-            <input id="remotePort" v-model="data.remote_port" class="form-control" placeholder="比如 25565"
-                   type="text">
-            <label for="remotePort">外部端口</label>
+        <div class="input-group mb-3">
+            <div class="form-floating">
+                <input id="remotePort" v-model="data.remote_port" class="form-control" placeholder="比如 25565"
+                       type="text">
+                <label for="remotePort">外部端口</label>
+            </div>
+            <button class="btn btn-outline-primary" type="button" @click="randomPort">随机端口</button>
         </div>
     </div>
 
@@ -116,6 +120,8 @@ const server = ref({
     allow_stcp: true,
     allow_sudp: true,
     allow_xtcp: true,
+    min_port: 10000,
+    max_port: 65535,
 })
 
 
@@ -151,6 +157,12 @@ function handleServerUpdate() {
     const urlParams = new URLSearchParams(window.location.search)
     urlParams.set('server_id', data.value.server_id)
     window.history.replaceState({}, '', `${window.location.pathname}?${urlParams.toString()}`)
+}
+
+function randomPort() {
+    const minPort = server.value.min_port
+    const maxPort = server.value.max_port
+    data.value.remote_port = Math.floor(Math.random() * (maxPort - minPort + 1)) + minPort
 }
 
 
