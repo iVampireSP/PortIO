@@ -18,7 +18,6 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $users = new User();
-        $count = User::count();
 
         foreach ($request->except(['page']) as $key => $value) {
             if (empty($value)) {

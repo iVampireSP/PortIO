@@ -17,27 +17,36 @@
             </div>
         </div>
 
+        <div class="mt-4">
+            <h3>兑换流量激活码</h3>
+            <div class="input-group mt-3">
+                <input v-model="activate_code" class="form-control" type="text">
+                <button class="btn btn-primary" @click="exchange">兑换</button>
+            </div>
+
+        </div>
+
         <button
-            type="button"
-            class="btn btn-primary"
-            style="display: none"
             id="signinButton"
+            class="btn btn-primary"
+            data-bs-target="#signinModal"
             data-bs-toggle="modal"
-            data-bs-target="#signinModal">
+            style="display: none"
+            type="button">
         </button>
 
 
-        <div class="modal fade" id="signinModal" tabindex="-1" aria-labelledby="signinModalLabel" aria-hidden="true">
+        <div id="signinModal" aria-hidden="true" aria-labelledby="signinModalLabel" class="modal fade" tabindex="-1">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="signinModalLabel">签到</h1>
+                        <h1 id="signinModalLabel" class="modal-title fs-5">签到</h1>
                     </div>
                     <div class="modal-body">
                         签到成功！{{ content }}
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">确定</button>
+                        <button class="btn btn-primary" data-bs-dismiss="modal" type="button">确定</button>
                     </div>
                 </div>
             </div>
@@ -61,6 +70,7 @@ const traffic = ref({
 });
 
 const theme = ref("")
+const activate_code = ref("")
 
 if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
     theme.value = "dark"
@@ -99,6 +109,21 @@ function sign(captcha_token) {
                     // refreshSign()
                 });
         });
+}
+
+function exchange() {
+    http.post('/codes/use', {
+        'code': activate_code.value
+    }).then(res => {
+        alert(res.data.message)
+    }).catch(res => {
+        alert(res.data.message)
+    }).finally(() => {
+        http.get("user")
+            .then((res) => {
+                traffic.value.traffic = res.data.traffic;
+            })
+    })
 }
 
 // function refreshSign() {

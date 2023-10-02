@@ -45,7 +45,7 @@ const items = ref([
         route: "tunnels.create",
     },
     {
-        name: "签到",
+        name: "流量补给",
         route: "sign",
     },
     {
