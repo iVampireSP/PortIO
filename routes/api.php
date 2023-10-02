@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\TrafficController;
 use App\Http\Controllers\Application\UserController as ApplicationUserController;
 use App\Http\Controllers\Api\ClientController;
 use App\Http\Controllers\Review\ReviewController;
+use App\Http\Controllers\Api\TrafficActivateCodeController;
 
 Route::prefix('tunnel')->name('api.tunnel.')->group(function () {
     Route::post('/handler/{key}', [PortManagerController::class, 'handler'])->name('handler');
@@ -29,6 +30,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('servers', ServerController::class);
 
     Route::apiResource('clients', ClientController::class);
+    Route::post('codes/use', [TrafficActivateCodeController::class, 'useActivateCode'])->name('codes.useActivateCode');
 
     Route::get('traffic', [TrafficController::class, 'free']);
     Route::post('traffic', [TrafficController::class, 'sign']);

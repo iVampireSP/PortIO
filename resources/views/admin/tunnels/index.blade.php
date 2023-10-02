@@ -86,7 +86,7 @@
                 <td>{{ $host->created_at }}</td>
                 <td>{{ $host->updated_at }}</td>
                 <td>
-                    <a href="{{ route('admin.tunnels.show', ['tunnel' => $host]) }}"
+                    <a href="{{ route('admin.tunnels.show', ['host' => $host]) }}"
                        class="btn btn-sm btn-primary">编辑</a>
                     &nbsp;
                     <form action="{{ route('admin.tunnels.destroy', ['tunnel' => $host]) }}" method="POST"
